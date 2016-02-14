@@ -10,11 +10,11 @@
 <body>
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
-		<a class="pull-left">
-			<%= image_tag "sf-logo.png", :style => "height: 37px; width: auto; margin-right: 7px;" %>
-		</a>
+		<%= link_to root_path do %>
+		<%= image_tag "sf-logo.png", :class => "pull-left", :style => "height: 37px; width: auto; margin: 3px;" %>
+		<% end %>
 		<div class="navbar-header">
-			<a href="#home" class="navbar-brand">Squarefruit Labs</a>
+			<%= link_to "Squarefruit Labs", root_path, :class => "navbar-brand" %>
 		</div>
 		<ul class="nav navbar-nav navbar-right">
 			<li><%= link_to "Register", new_user_registration_path %></li>

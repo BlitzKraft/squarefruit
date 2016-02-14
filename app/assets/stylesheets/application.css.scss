@@ -14,7 +14,19 @@
  *= require_self
  */
 
+@import "normalize.scss";
 @import "bootstrap-sprockets";
 @import "bootswatch/cyborg/variables";
 @import "bootstrap";
+@import "_variables.scss";
 @import "bootswatch/cyborg/bootswatch";
+
+body {
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.navbar {
+	margin-top: 5px;
+}

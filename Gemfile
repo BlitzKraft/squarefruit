@@ -13,10 +13,25 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+#Makes shit look pretty
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'bootswatch-rails'
 gem 'autoprefixer-rails'
 
+#User signin registration
+gem 'devise'
+
+#Uploaded files
+gem 'paperclip', '~> 4.3'
+
+#Image manipulation
+gem 'image_science', '~> 1.2', '>= 1.2.6'
+
+#Comments with threading
+gem 'acts_as_commentable_with_threading', '~> 2.0', '>= 2.0.1'
+
+#mime type detection
+gem 'mimemagic'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

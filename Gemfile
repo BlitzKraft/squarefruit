@@ -13,24 +13,30 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-#Makes shit look pretty
+# Makes shit look pretty
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'bootswatch-rails'
 gem 'autoprefixer-rails'
 
-#User signin registration
+# User signin registration
 gem 'devise'
 
-#Uploaded files
+# Uploaded files
 gem 'paperclip', '~> 4.3'
 
-#Image manipulation
-#gem 'image_science', '~> 1.2', '>= 1.2.6' #Uncomment for images. Has some dependencies
+# Image manipulation
+# gem 'image_science', '~> 1.2', '>= 1.2.6' # Uncomment for images. Has some dependencies
 
-#Comments with threading
+# Comments with threading
 gem 'acts_as_commentable_with_threading', '~> 2.0', '>= 2.0.1'
 
-#mime type detection
+# For voting 
+gem 'acts_as_votable', '~> 0.10.0'
+
+# Helps with forms
+gem 'simple_form', '~> 3.0.2'
+
+# mime type detection
 gem 'mimemagic'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

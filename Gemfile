@@ -25,7 +25,7 @@ gem 'devise'
 gem 'paperclip', '~> 4.3'
 
 #Image manipulation
-gem 'image_science', '~> 1.2', '>= 1.2.6'
+#gem 'image_science', '~> 1.2', '>= 1.2.6' #Uncomment for images. Has some dependencies
 
 #Comments with threading
 gem 'acts_as_commentable_with_threading', '~> 2.0', '>= 2.0.1'

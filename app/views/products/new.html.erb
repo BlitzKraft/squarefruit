@@ -1,9 +1,5 @@
-<form class="form-horizontal">
-	<fieldset>
-		<div class="form-group">
 <h2>New listing</h2>
-
-<%= form_for :post, url: products_path do |f| %>
+<%= form_for(@product, :html => { :class => "form-stacked" }) do |f| %>
 	<p>
 	<%= f.label :title %><br>
 	<%= f.text_field :title, :class => "form-control", :id => "text" %> <br>
@@ -15,6 +11,3 @@
 	<%= f.submit "Submit", :class => "btn btn-primary" %>
 	<%= link_to "Cancel", root_path, :class => "btn btn-default" %>
 <% end %>
-	</div>
-</fieldset>
-</form>

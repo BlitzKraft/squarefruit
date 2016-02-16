@@ -16,10 +16,17 @@
 		<div class="navbar-header">
 			<%= link_to "Squarefruit Labs", root_path, :class => "navbar-brand" %>
 		</div>
+		<% if !user_signed_in? %>
 		<ul class="nav navbar-nav navbar-right">
 			<li><%= link_to "Register", new_user_registration_path %></li>
 			<li><%= link_to "Login", new_user_session_path %></li>
 		</ul>
+		<% else %>
+			<div class="btn-group btn-group-justfied pull-right">
+				<%= link_to "New", products_path, :class => "btn btn-default" %>
+				<%= link_to "Logout", destroy_user_session_path, :class => "btn btn-default" %>
+			</div>
+		<% end %>
 	</div>
 </nav>
 

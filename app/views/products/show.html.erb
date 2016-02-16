@@ -1,0 +1,7 @@
+<h2>
+<%= @product.title %>
+</h2>
+
+<p class="date">Submitted <%= time_ago_in_words(@product.created_at) %> ago</p>
+
+<p class="body"><%= @product.body %> </p>

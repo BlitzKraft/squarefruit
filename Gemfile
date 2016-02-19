@@ -24,8 +24,6 @@ gem 'devise'
 # Uploaded files
 # gem 'paperclip', '~> 4.3'
 
-# Amazon aws sdk
-gem 'aws-sdk'
 
 # Image manipulation
 # gem 'image_science', '~> 1.2', '>= 1.2.6' # Uncomment for images. Has some dependencies

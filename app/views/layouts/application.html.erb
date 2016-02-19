@@ -8,7 +8,8 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<nav class="navbar navbar-default">
+<div class="navbar navbar-default">
+<div class="container">
 	<div class="container-fluid">
 		<%= link_to root_path do %>
 		<%= image_tag "sf-logo.png", :class => "pull-left", :style => "height: 37px; width: auto; margin: 3px;" %>
@@ -27,8 +28,8 @@
 				<%= link_to "Logout", destroy_user_session_path, :class => "btn btn-default" %>
 			</div>
 		<% end %>
-	</div>
-</nav>
+	</div></div>
+</div>
 
 <div class="container">
 	<p class="notice"><%= notice %></p>

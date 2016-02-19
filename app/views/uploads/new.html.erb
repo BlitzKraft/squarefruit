@@ -1,0 +1,12 @@
+<h2>Uploads#new</h2>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h6>Choose file</h6>
+	</div>
+	<div class="panel-body">
+		<%= form_tag uploads_path, enctype: 'multipart/form-data' do %>
+			<%= file_field_tag :file %>
+			<%= submit_tag 'Upload file', :class => 'btn btn-info' %>
+		<% end %> 
+	</div>
+</div>

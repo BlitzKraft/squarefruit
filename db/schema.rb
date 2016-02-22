@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160217215855) do
+ActiveRecord::Schema.define(version: 20160222174619) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 20160217215855) do
     t.text     "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "image_id"
+    t.string   "model_id"
   end
 
   create_table "uploads", force: :cascade do |t|
@@ -43,6 +45,7 @@ ActiveRecord::Schema.define(version: 20160217215855) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "image_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

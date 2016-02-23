@@ -1,13 +1,19 @@
 <h2>New listing</h2>
-<%= form_for(@product, :html => { :class => "form-stacked" }) do |f| %>
+<%= form_for(@product) do |f| %>
 	<p>
-	<%= f.label :title %><br>
-	<%= f.text_field :title, :class => "form-control", :id => "text" %> <br>
+		<%= f.label :title %><br>
+		<%= f.text_field :title, :class => "form-control", :id => "text" %> <br>
 	</p>
 	<p>
-	<%= f.label :body %><br>
-	<%= f.text_area :body, :class => "form-control", :id => "textArea" %><br>
+		<%= f.label :body %><br>
+		<%= f.text_area :body, :class => "form-control", :id => "textArea" %><br>
 	</p>
-	<%= f.submit "Submit", :class => "btn btn-primary" %>
-	<%= link_to "Cancel", root_path, :class => "btn btn-default" %>
+	<p>
+		<%= form_tag uploads_path, enctype: 'multipart/form-data' do %>
+			<%= f.label :file %> <br>
+			<%= file_field_tag :file %><br>
+			<%= submit_tag 'Upload & Submit', :class => 'btn btn-primary' %>
+			<%= link_to "Cancel", root_path, :class => "btn btn-default" %>
+		<% end %> 
+	</p>
 <% end %>

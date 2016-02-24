@@ -1,6 +1,7 @@
 <h2>
 <%= @product.title %>
 </h2>
+<%= image_tag @product.product_image_url() %>
 
 <p class="date">Submitted <%= time_ago_in_words(@product.created_at) %> ago</p>
 

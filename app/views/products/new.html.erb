@@ -12,7 +12,7 @@
 	<p>
 		<%= form_tag uploads_path, enctype: 'multipart/form-data' do %>
 			<%= f.label :file %> <br>
-			<%= f.attachment_field :image %>
+			<%= f.attachment_field :product_image %>
 			<%= submit_tag 'Upload & Submit', :class => 'btn btn-primary' %>
 			<%= link_to "Cancel", root_path, :class => "btn btn-default" %>
 		<% end %> 

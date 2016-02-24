@@ -7,15 +7,22 @@ class ProductsController < ApplicationController
 	end
 	def create
 		@product = Product.new(product_params)
-		@product.save
-
-		redirect_to @product
+		respond_to do |format| 
+			if @product.save
+				format.html { redirect_to @product, notice: 'Listing successfully created.' }
+				format.json { render :show, status: :created, location: @product }
+			else
+				format.html { render :new }
+				format.json { render json: @product.errors, status: :unprocessable_entity }
+			end
+		end
 	end
 	def show
 		@product = Product.find(params[:id])
 	end
 	def product_params
-		params.require(:product).permit(:title, :body)
+		params.require(:product).permit(:title, :body, :image)
 	end
 	private :product_params
+
 end

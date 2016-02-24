@@ -1,5 +1,6 @@
+<div class="col-md-6">
 <h2>New listing</h2>
-<%= form_for(@product) do |f| %>
+<%= form_for @product do |f| %>
 	<p>
 		<%= f.label :title %><br>
 		<%= f.text_field :title, :class => "form-control", :id => "text" %> <br>
@@ -11,9 +12,10 @@
 	<p>
 		<%= form_tag uploads_path, enctype: 'multipart/form-data' do %>
 			<%= f.label :file %> <br>
-			<%= file_field_tag :file %><br>
+			<%= f.attachment_field :image %>
 			<%= submit_tag 'Upload & Submit', :class => 'btn btn-primary' %>
 			<%= link_to "Cancel", root_path, :class => "btn btn-default" %>
 		<% end %> 
 	</p>
 <% end %>
+</div>

@@ -1,1 +1,12 @@
-<h1>This is the products page</h1>
+<h4>List</h4>
+<div class="jumbotron">
+	<h1>Archetype</h1>
+	<p>Explore the possibilities</p>
+	<p><a class="btn btn-primary" href="">Learn more</a></p>
+</div>
+
+<%= @products.each do |prod| %>
+	<div class="box panel panel-default">
+		<%= link_to prod.title, prod %>
+	</div>
+<% end %>

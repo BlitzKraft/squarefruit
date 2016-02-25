@@ -1,9 +1,12 @@
 class ProductsController < ApplicationController
 	def index
-		@product = Product.all
+		@products = Product.all.order('created_at DESC')
 	end
 	def new
 		@product = Product.new
+	end
+	def edit
+		@product = Product.find(params[:id])
 	end
 	def create
 		@product = Product.new(product_params)

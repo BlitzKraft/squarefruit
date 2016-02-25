@@ -4,6 +4,6 @@ class Product < ActiveRecord::Base
 	validates :body, presence: true
 	attachment :product_image
 	attachment :product_model
-	has_many :product_images, dependent: :destroy
+	has_many :product_image, dependent: :destroy
 	accepts_attachments_for :images, attachment: :file
 end

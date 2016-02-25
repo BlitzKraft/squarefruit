@@ -1,12 +1,14 @@
-<h4>List</h4>
 <div class="jumbotron">
 	<h1>Archetype</h1>
 	<p>Explore the possibilities</p>
 	<p><a class="btn btn-primary" href="">Learn more</a></p>
 </div>
 
+<div class="container">
 <%= @products.each do |prod| %>
-	<div class="box panel panel-default">
+	<div class="box panel panel-default" style="margin: 20px 10px 10px 10px; display: inline-block; max-height: 400px; width: 30%;">
 		<%= link_to prod.title, prod %>
+		<%= link_to((image_tag prod.product_image_url(), :style => "display: inline-block; max-width: 100%; max-height: 100%;"), prod) %>
 	</div>
 <% end %>
+</div>

@@ -4,11 +4,11 @@
 	<p><a class="btn btn-primary" href="">Learn more</a></p>
 </div>
 
-<div class="container">
-<%= @products.each do |prod| %>
-	<div class="box panel panel-default" style="margin: 20px 10px 10px 10px; display: inline-block; max-height: 400px; width: 30%;">
-		<%= link_to prod.title, prod %>
-		<%= link_to((image_tag prod.product_image_url(), :style => "display: inline-block; max-width: 100%; max-height: 100%;"), prod) %>
-	</div>
-<% end %>
+<div class="container grid" id="productIndex" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 350, "gutter": 20 }' onresize='prodRearrange()'>
+	<% @products.each do |prod| %>
+		<div class="grid-item box panel panel-default" style="max-width: 350px; height: auto;">
+			<%= link_to prod.title, prod %>
+			<%= link_to((image_tag prod.product_image_url(), :style => "display: inline-block; max-width: 100%; max-height: 100%;"), prod) %>
+		</div>
+	<% end %>
 </div>

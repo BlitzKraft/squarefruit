@@ -5,9 +5,23 @@
 
 <p class="date">Submitted <%= time_ago_in_words(@product.created_at) %> ago</p>
 
-<p class="body"><%= @product.body %> </p>
+<p class="body"><%= @product.body%></p>
 
+<div class="btn btn-primary pull-left" data-toggle="modal" data-target="#3Dview">View 3D</div>
+
+<div id="3Dview" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">Head</div>
+			<div class="modal-body">This some body</div>
+			<div class="modal-footer">Foot</div>
+		</div>
+	</div>
+</div>
+
+<% if user_signed_in? %>
 <div class="btn btn-group pull-right">
 	<%= link_to "Edit", edit_product_path, :class => "btn btn-default" %>
 	<%= link_to "Delete", product_path(@product), method: :delete, data: {confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
 </div>
+<% end %>

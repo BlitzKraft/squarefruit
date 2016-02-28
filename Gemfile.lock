@@ -218,6 +218,7 @@ DEPENDENCIES
   acts_as_commentable_with_threading (~> 2.0, >= 2.0.1)
   acts_as_votable (~> 0.10.0)
   autoprefixer-rails
+  aws-sdk
   bootstrap-sass (~> 3.2.0)
   bootswatch-rails
   byebug

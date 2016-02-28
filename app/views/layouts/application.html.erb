@@ -33,8 +33,9 @@
 		</div>
 
 		<div class="container">
-			<p class="notice"><%= notice %></p>
-			<p class="alert"><%= alert %></p>
+		<% flash.each do |notice, alert| %>
+			<%= content_tag(:div, alert, class: "alert") %>
+		<% end %>
 			<%= yield %>
 		</div>
 

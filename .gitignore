@@ -18,6 +18,3 @@
 
 # Ignore all vim swap files
 *.swp
-
-# Ignore refile aws keys
-config/initializers/refile.rb

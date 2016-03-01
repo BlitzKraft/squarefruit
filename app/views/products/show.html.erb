@@ -18,8 +18,33 @@
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header"><%= @product.title %></div>
-				<div class="modal-body">This some body</div>
-				<div class="modal-footer">Foot</div>
+				<div class="modal-body">
+					This some body
+					<div>
+						<canvas id="cv" style="border: 1px solid; width: 640px; height: 405px;"></canvas>
+						<script type="text/javascript">
+							var canvas = document.getElementById("cv");
+							var viewer = new JSC3D.Viewer(canvas);
+							viewer.setParameter('SceneUrl','<%= asset_path("clip.stl") %>');
+							viewer.setParameter('InitRotationX',0);
+							viewer.setParameter('InitRotationY',0);
+							viewer.setParameter('InitRotationZ',45);
+							viewer.setParameter('ModelColor','#FF00FF');
+							viewer.setParameter('BackgroundColor1','#FFFFFF');
+							viewer.setParameter('BackgroundColor2','#FFFFFF');
+							viewer.setParameter('CreaseAngle',-180);
+							viewer.setParameter('MipMapping','on');
+							viewer.setParameter('ProgressBar','on');
+							viewer.setParameter('frameWidth', 640);
+							viewer.setParameter('frameHeight', 405);
+							viewer.setParameter('Definition', 'high');
+							viewer.setParameter('Renderer', 'webgl');
+							viewer.init();
+							viewer.update();
+						</script>
+					</div>
+				</div>
+				<div class="modal-footer">Click outside this window to close</div>
 			</div>
 		</div>
 	</div>

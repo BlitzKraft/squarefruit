@@ -17,3 +17,5 @@
 //= require_tree .
 //= require refile
 //= require masonry.pkgd.min.js
+//= require jsc3d.js
+//= require jsc3d.touch.js

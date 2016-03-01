@@ -21,7 +21,7 @@
 	</p>
 	<p>
 		<%= f.label :file %> <br>
-		<%= f.attachment_field :product_image %>
+		<%= f.attachment_field :product_image, multiple: true %>
 		<%= submit_tag "Upload & Submit", :class => "btn btn-primary" %>
 		<%= link_to "Cancel", root_path, :class => "btn btn-default" %>
 	</p>

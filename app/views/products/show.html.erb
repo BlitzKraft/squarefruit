@@ -1,28 +1,26 @@
-<h2>
-<%= @product.title %>
-</h2>
-<!-- %= image_tag @product.product_image_url(), :style => "max-height: 100%; max-width: 100%;" %-->
-<%= image_tag attachment_url(@product, :product_image), :style => "max-height: 100%; max-width: 100%;" %>
+<div class="col-lg-8 col-lg-offset-2">
+	<h2> <%= @product.title %> </h2>
+	<%= image_tag attachment_url(@product, :product_image), :style => "max-height: 100%; max-width: 100%;" %>
 
-<p class="date">Submitted <%= time_ago_in_words(@product.created_at) %> ago</p>
+	<p class="date">Submitted <%= time_ago_in_words(@product.created_at) %> ago</p> 
 
-<p class="body"><%= @product.body%></p>
+	<p class="body"><%= @product.body%></p>
 
-<div class="btn btn-primary pull-left" data-toggle="modal" data-target="#3Dview">View 3D</div>
+	<div class="btn btn-primary pull-left" data-toggle="modal" data-target="#3Dview">View 3D</div>
+	<% if user_signed_in? %>
+		<div class="btn btn-group pull-right">
+			<%= link_to "Edit", edit_product_path, :class => "btn btn-default" %>
+			<%= link_to "Delete", product_path(@product), method: :delete, data: {confirm: "Are you sure?" }, :class => "btn btn-danger" %>
+		</div>
+	<% end %>
 
-<div id="3Dview" class="modal fade">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-content">
-			<div class="modal-header"><%= @product.title %></div>
-			<div class="modal-body">This some body</div>
-			<div class="modal-footer">Foot</div>
+	<div id="3Dview" class="modal fade">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header"><%= @product.title %></div>
+				<div class="modal-body">This some body</div>
+				<div class="modal-footer">Foot</div>
+			</div>
 		</div>
 	</div>
 </div>
-
-<% if user_signed_in? %>
-<div class="btn btn-group pull-right">
-	<%= link_to "Edit", edit_product_path, :class => "btn btn-default" %>
-	<%= link_to "Delete", product_path(@product), method: :delete, data: {confirm: "Are you sure?" }, :class => "btn btn-danger" %>
-</div>
-<% end %>

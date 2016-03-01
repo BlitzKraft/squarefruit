@@ -6,7 +6,7 @@
 
 <div class="container grid" id="productIndex" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 350, "gutter": 20 }' onresize='prodRearrange()'>
 	<% @products.each do |prod| %>
-		<div class="grid-item box panel panel-default" style="max-width: 350px; height: auto;">
+		<div class="grid-item box panel panel-default" style="min-width: 250px;max-width: 30%;">
 			<%= link_to prod.title, prod %>
 			<%= link_to((image_tag prod.product_image_url(), :style => "display: inline-block; max-width: 100%; max-height: 100%;"), prod) %>
 		</div>

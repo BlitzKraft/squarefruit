@@ -4,26 +4,13 @@
 	<% if @product.errors.any? %>
 		<div id="errors">
 			<h4><%= pluralize(@product.errors.count, "Error") %> prevented the operation</h4>
-	<ul>
-		<% @product.errors.full_messages.each do |msg| %>
-			<li><%= msg %></li>
-		<% end %>
-	</ul>
-</div>
-<% end %>
-	<p>
-		<%= f.label :title %><br>
-		<%= f.text_field :title, :class => "form-control", :id => "text" %> <br>
-	</p>
-	<p>
-		<%= f.label :body %><br>
-		<%= f.text_area :body, :class => "form-control", :id => "textArea" %><br>
-	</p>
-	<p>
-		<%= f.label :file %> <br>
-		<%= f.attachment_field :product_image %>
-		<%= submit_tag "Upload & Submit", :class => "btn btn-primary" %>
-		<%= link_to "Cancel", root_path, :class => "btn btn-default" %>
-	</p>
+			<ul>
+			<% @product.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+			</ul>
+		</div>
+	<% end %>
+	<%= render 'form' %>
 <% end %>
 </div>

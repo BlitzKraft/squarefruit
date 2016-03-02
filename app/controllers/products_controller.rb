@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+#	before_filter :require_permission, only: :edit
 	def index
 		@products = Product.all.order('created_at DESC')
 	end
@@ -24,6 +25,7 @@ class ProductsController < ApplicationController
 
 	def create
 		@product = Product.new(product_params)
+		@product.user_id = current_user.id
 		respond_to do |format| 
 			if @product.save
 				format.html { redirect_to @product, notice: 'Listing successfully created.' }
@@ -44,6 +46,13 @@ class ProductsController < ApplicationController
 		@product.destroy
 		redirect_to products_path
 	end
+
+#	def require_permission
+#		@product = Product.find(params[:id])
+#		if current_user != Product.find(params[:id]).user
+#			redirect_to @product
+#		end
+#	end
 
 	private 
 	def product_params

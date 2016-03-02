@@ -4,7 +4,7 @@
 	<p><a class="btn btn-primary" href="">Learn more</a></p>
 </div>
 
-<div class="container grid" id="productIndex" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 350, "gutter": 20 }' onresize='prodRearrange()'>
+<div class="container grid" id="productIndex" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 350, "gutter": 20 }'>
 	<% @products.each do |prod| %>
 		<div class="grid-item box panel panel-default" style="min-width: 250px;max-width: 30%;">
 			<%= link_to prod.title, prod %>

@@ -8,10 +8,12 @@
 
 	<div class="btn btn-primary pull-left" data-toggle="modal" data-target="#3Dview">View 3D</div>
 	<% if user_signed_in? %>
-		<div class="btn btn-group pull-right">
-			<%= link_to "Edit", edit_product_path, :class => "btn btn-default" %>
-			<%= link_to "Delete", product_path(@product), method: :delete, data: {confirm: "Are you sure?" }, :class => "btn btn-danger" %>
-		</div>
+		<% if current_user.id == @product.user_id %>
+			<div class="btn btn-group pull-right">
+				<%= link_to "Edit", edit_product_path, :class => "btn btn-default" %>
+				<%= link_to "Delete", product_path(@product), method: :delete, data: {confirm: "Are you sure?" }, :class => "btn btn-danger" %>
+			</div>
+		<% end %>
 	<% end %>
 
 	<div id="3Dview" class="modal fade">
@@ -30,8 +32,8 @@
 							viewer.setParameter('InitRotationY',0);
 							viewer.setParameter('InitRotationZ',45);
 							viewer.setParameter('ModelColor','#FF00FF');
-							viewer.setParameter('BackgroundColor1','#FFFFFF');
-							viewer.setParameter('BackgroundColor2','#FFFFFF');
+							viewer.setParameter('BackgroundColor1','#2C2C2C');
+							viewer.setParameter('BackgroundColor2','#C2C2C2');
 							viewer.setParameter('CreaseAngle',-180);
 							viewer.setParameter('MipMapping','on');
 							viewer.setParameter('ProgressBar','on');
@@ -49,3 +51,4 @@
 		</div>
 	</div>
 </div>
+

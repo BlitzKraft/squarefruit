@@ -17,3 +17,6 @@
 //= require_tree .
 //= require refile
 //= require masonry.pkgd.min.js
+//= require jsstl/three.js
+//= require jsstl/stats.js
+//= require jsstl/detector.js

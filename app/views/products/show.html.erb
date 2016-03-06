@@ -21,7 +21,6 @@
 			<div class="modal-content">
 				<div class="modal-header"><%= @product.title %></div>
 				<div class="modal-body">
-					This some body
 					<div>
 						<canvas id="cv" style="border: 1px solid; width: 640px; height: 405px;"></canvas>
 						<script type="text/javascript">
@@ -234,7 +233,6 @@
 								xhr.onerror = function(e) {
 									console.log(e);
 								}
-								//xhr.open( "GET", 'Octocat-v1.stl', true );
 								xhr.open( "GET", '<%= asset_path "clip.stl" %>', true );
 								xhr.responseType = "arraybuffer";
 								//xhr.setRequestHeader("Accept","text/plain");

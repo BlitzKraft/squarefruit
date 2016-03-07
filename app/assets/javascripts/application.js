@@ -20,3 +20,4 @@
 //= require jsstl/three.js
 //= require jsstl/stats.js
 //= require jsstl/detector.js
+//= require spectrum.js

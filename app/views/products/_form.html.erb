@@ -1,5 +1,5 @@
 <div class="col-md-6">
-<%= form_for @product do |f| %>
+	<%= form_for @product do |f| %>
 	<p>
 		<%= f.label :title %><br>
 		<%= f.text_field :title, :class => "form-control", :id => "text" %> <br>
@@ -12,30 +12,30 @@
 		<%= f.label :file %> <br>
 		<%= f.attachment_field  :image_list, multiple: true, :id => "image_list", :style => "display: none;" %>
 		<div class="input-append input-group">
-			<input id="file-display" class="btn form-control" type="text"> </input>
+			<input id="file-display" class="btn form-control" type="text">
 			<span class="input-group-btn">
-			<button class="btn btn-primary" onclick="document.getElementById('image_list').click()" type="button">
-			Choose image(s)
-			</button>
+				<button class="btn btn-primary" onclick="document.getElementById('image_list').click()" type="button">
+					Choose image(s)
+				</button>
 			</span>
 		</div><br>
 		 
-		<%= f.attachment_field :product_model, multiple: false, :id => "stl_display", :style => "display: none;" %>
+		<%= f.attachment_field :product_model, multiple: false, :onchange => "document.getElementById(\'stl-display\').value = this.value.split(\'\\\\').pop()", :id => "stl_display", :style => "display: none;" %>
 		<div class="input-append input-group">
-			<input id="stl-display" class="btn form-control" type="text"></input>
+			<input id="stl-display" class="btn form-control" type="text">
 			<span class="input-group-btn">
-			<button class="btn btn-primary" style="" type="button" onclick="document.getElementById('stl_display').click()">
-			Choose .stl
-			</button>
-		</span>
+				<button class="btn btn-primary" id="stl-button" type="button" onclick="document.getElementById('stl_display').click()">
+					Choose .stl
+				</button>
+			</span>
 		</div>
-
-		<div class="btn btn-group">
+		<br>
+	</p>
+	<div class="btn btn-group">
 		<%= submit_tag "Upload & Submit", :class => "btn btn-primary" %>
 		<%= link_to "Cancel", root_path, :class => "btn btn-default" %>
-		</div>
-	</p>
-<% end %>
+	</div>
+	<% end %>
 </div>
 
 <!-- TODO show the filename in the input field -->

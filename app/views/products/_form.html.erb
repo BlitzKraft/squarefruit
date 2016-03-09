@@ -10,7 +10,7 @@
 	</p>
 	<p>
 		<%= f.label :file %> <br>
-		<%= f.attachment_field  :image_list, multiple: true, :id => "image_list", :style => "display: none;" %>
+		<%= f.attachment_field  :image_list, multiple: true, :id => "image_list", :onchange => "showFiles()", :style => "display: none;" %>
 		<div class="input-append input-group">
 			<input id="file-display" class="btn form-control" type="text">
 			<span class="input-group-btn">
@@ -40,4 +40,17 @@
 
 <!-- TODO show the filename in the input field -->
 <script type="text/javascript">
+function showFiles() {
+	var list = document.getElementById('image_list').files;
+	var validExt = ['jpg', 'jpeg', 'bmp', 'gif', 'png'];
+	var txt = '';
+	for (var i = 0; i<list.length; i++ ) {
+		txt = txt.concat(list.item(i).name.split('\\').pop());
+		if(i == list.length - 1) {
+		} else {
+			txt = txt.concat(', ');
+		}
+	}
+	document.getElementById('file-display').value = txt;
+}
 </script>

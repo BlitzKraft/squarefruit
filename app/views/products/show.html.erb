@@ -20,7 +20,6 @@
 			<div class="modal-content">
 				<div class="modal-header"><%= @product.title %></div>
 				<div class="modal-body" id="canvas">
-					test
 				</div>
 				<div class="modal-footer">Click outside this window to close</div>
 			</div>
@@ -61,7 +60,7 @@
 					)
 				);
 				offset += 12 }
-			offset += 2;   
+			offset += 2;
 			geo.faces.push(new THREE.Face3(i*3, i*3+1, i*3+2, normal));
 		}
 		geo.computeFaceNormals();
@@ -218,10 +217,9 @@
 		xhr.responseType = "arraybuffer";
 		xhr.send( null );
 		renderer = new THREE.WebGLRenderer(); //new THREE.CanvasRenderer();
-		renderer.setSize( 400, 400 );
-		//document.getElementById("3Dview").appendChild( renderer.domElement );
-		var test = document.getElementById("canvas");
-			test.appendChild(renderer.domElement );
+		renderer.setSize(900, 600);
+		//renderer.setSize( window.innerWidth, window.innerHeight );
+		document.getElementById("canvas").appendChild(renderer.domElement );
 		//document.body.appendChild( renderer.domElement );
 	}
 	function animate() {

@@ -222,6 +222,7 @@ DEPENDENCIES
   bootswatch-rails
   byebug
   coffee-rails (~> 4.1.0)
+  coffee-script
   devise
   jbuilder (~> 2.0)
   jquery-rails

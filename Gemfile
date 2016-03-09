@@ -18,6 +18,8 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'bootswatch-rails'
 gem 'autoprefixer-rails'
 
+gem 'coffee-script'
+
 # User signin registration
 gem 'devise'
 

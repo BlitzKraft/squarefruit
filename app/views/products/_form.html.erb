@@ -10,10 +10,34 @@
 	</p>
 	<p>
 		<%= f.label :file %> <br>
-		<%= f.attachment_field :image_list, multiple: true %>
-		<%= f.attachment_field :product_model, multiple: false %>
+		<%= f.attachment_field  :image_list, multiple: true, :id => "image_list", :style => "display: none;" %>
+		<div class="input-append input-group">
+			<input id="file-display" class="btn form-control" type="text"> </input>
+			<span class="input-group-btn">
+			<button class="btn btn-primary" onclick="document.getElementById('image_list').click()" type="button">
+			Choose image(s)
+			</button>
+			</span>
+		</div><br>
+		 
+		<%= f.attachment_field :product_model, multiple: false, :id => "stl_display", :style => "display: none;" %>
+		<div class="input-append input-group">
+			<input id="stl-display" class="btn form-control" type="text"></input>
+			<span class="input-group-btn">
+			<button class="btn btn-primary" style="" type="button" onclick="document.getElementById('stl_display').click()">
+			Choose .stl
+			</button>
+		</span>
+		</div>
+
+		<div class="btn btn-group">
 		<%= submit_tag "Upload & Submit", :class => "btn btn-primary" %>
 		<%= link_to "Cancel", root_path, :class => "btn btn-default" %>
+		</div>
 	</p>
 <% end %>
 </div>
+
+<!-- TODO show the filename in the input field -->
+<script type="text/javascript">
+</script>

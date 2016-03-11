@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.2.4'
 gem 'rails', '4.2.3'
-gem 'pg'
+gem 'pg' # PostgreSQL
 gem 'rails_12factor', group: :production
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -19,6 +19,7 @@ gem 'bootswatch-rails'
 gem 'autoprefixer-rails'
 
 gem 'coffee-script'
+gem 'ruby-filemagic'
 
 # User signin registration
 gem 'devise'
@@ -33,7 +34,7 @@ gem 'aws-sdk'
 # gem 'image_science', '~> 1.2', '>= 1.2.6' # Uncomment for images. Has some dependencies
 
 # Comments with threading
-gem 'acts_as_commentable_with_threading', '~> 2.0', '>= 2.0.1'
+# gem 'acts_as_commentable_with_threading', '~> 2.0', '>= 2.0.1'
 
 # For voting 
 gem 'acts_as_votable', '~> 0.10.0'

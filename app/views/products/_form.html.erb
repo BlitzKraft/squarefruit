@@ -10,6 +10,7 @@
 	</p>
 	<p>
 		<%= f.label :file %> <br>
+		<!--%= f.attachment_field  :image, multiple: true, :id => "image_list", :onchange => "showFiles()", :style => "display: none;" %-->
 		<%= f.attachment_field  :image, multiple: true, :id => "image_list", :onchange => "showFiles()", :style => "display: none;" %>
 		<div class="input-append input-group">
 			<input id="file-display" class="btn form-control" type="text">

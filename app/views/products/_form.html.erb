@@ -10,7 +10,7 @@
 	</p>
 	<p>
 		<%= f.label :file %> <br>
-		<%= f.attachment_field  :image_list, multiple: true, :id => "image_list", :onchange => "showFiles()", :style => "display: none;" %>
+		<%= f.attachment_field  :image, multiple: true, :id => "image_list", :onchange => "showFiles()", :style => "display: none;" %>
 		<div class="input-append input-group">
 			<input id="file-display" class="btn form-control" type="text">
 			<span class="input-group-btn">
@@ -20,7 +20,7 @@
 			</span>
 		</div><br>
 		 
-		<%= f.attachment_field :product_model, multiple: false, :onchange => "document.getElementById(\'stl-display\').value = this.value.split(\'\\\\').pop()", :id => "stl_display", :style => "display: none;" %>
+		<%= f.attachment_field :product_model, multiple: false, :onchange => "showStl()", :id => "stl_display", :style => "display: none;" %>
 		<div class="input-append input-group">
 			<input id="stl-display" class="btn form-control" type="text">
 			<span class="input-group-btn">
@@ -42,15 +42,33 @@
 <script type="text/javascript">
 function showFiles() {
 	var list = document.getElementById('image_list').files;
-	var validExt = ['jpg', 'jpeg', 'bmp', 'gif', 'png'];
+	var re= /(\.jpg|\.jpeg|\.bmp|\.gif|\.png)$/i;
 	var txt = '';
+	var invCount = 0;
 	for (var i = 0; i<list.length; i++ ) {
-		txt = txt.concat(list.item(i).name.split('\\').pop());
-		if(i == list.length - 1) {
+		if(!re.exec(list.item(i).name)) {
+			invCount++;
 		} else {
-			txt = txt.concat(', ');
+			txt = txt.concat(list.item(i).name.split('\\').pop());
+			if(i == list.length - 1) {
+			} else {
+				txt = txt.concat(', ');
+			}
 		}
 	}
-	document.getElementById('file-display').value = txt;
+	if(invCount ==0) {
+		document.getElementById('file-display').value = txt;
+	} else {
+		alert(invCount + " file(s) have invalid extensions for images.");
+	}
+}
+
+function showStl() {
+	var name = document.getElementById('stl_display').value.split('\\').pop();
+	if(name.split('.').pop().toLowerCase() == 'stl') {
+		document.getElementById('stl-display').value = name;
+	} else {
+		alert('Not an stl file');
+	}
 }
 </script>

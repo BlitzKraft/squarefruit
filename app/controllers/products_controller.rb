@@ -8,14 +8,12 @@ class ProductsController < ApplicationController
 		@product = Product.new
 	end
 
-
 	def edit
 		@product = Product.find(params[:id])
 	end
 
 	def update
 		@product = Product.find(params[:id])
-
 		if @product.update(product_params)
 			redirect_to @product
 		else
@@ -56,6 +54,6 @@ class ProductsController < ApplicationController
 
 	private 
 	def product_params
-		params.require(:product).permit(:title, :body, :image_list)
+		params.require(:product).permit(:title, :body, :image, :product_model)
 	end
 end

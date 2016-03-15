@@ -9,9 +9,9 @@
 		<%= f.text_area :body, :class => "form-control", :id => "textArea" %><br>
 	</p>
 	<p>
-		<%= f.label :file %> <br>
-		<!--%= f.attachment_field  :image, multiple: true, :id => "image_list", :onchange => "showFiles()", :style => "display: none;" %-->
-		<%= f.attachment_field  :image, multiple: true, :id => "image_list", :onchange => "showFiles()", :style => "display: none;" %>
+		<!-- %= f.label :file %> <br>
+		<TODO %= f.attachment_field  :image, multiple: true, :id => "image_list", :onchange => "showFiles()", :style => "display: none;" %-->
+		<!-- %= f.attachment_field  :image, multiple: true, :id => "image_list", :onchange => "showFiles()", :style => "display: none;" %>
 		<div class="input-append input-group">
 			<input id="file-display" class="btn form-control" type="text">
 			<span class="input-group-btn">
@@ -19,9 +19,9 @@
 					Choose image(s)
 				</button>
 			</span>
-		</div><br>
+		</div--><br>
 		 
-		<%= f.attachment_field :product_model, multiple: false, :onchange => "showStl()", :id => "stl_display", :style => "display: none;" %>
+		<%= f.attachment_field :threeD_model, multiple: false, :onchange => "showStl()", :id => "stl_display", :style => "display: none;" %>
 		<div class="input-append input-group">
 			<input id="stl-display" class="btn form-control" type="text">
 			<span class="input-group-btn">

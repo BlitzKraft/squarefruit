@@ -1,7 +1,9 @@
 class Product < ActiveRecord::Base
 	belongs_to :user
-	has_many :images, dependent: :destroy
-	accepts_attachments_for :images, attachment: :file
+	attachment :threeD_model
+	#has_many :images, dependent: :destroy
+	#accepts_attachments_for :threeD_model
+	#accepts_attachments_for :images, attachment: :file
 	#attachment :image, content_type: ["image/jpeg", "image/png", "image/gif"]
 	
 	#attachment :product_model

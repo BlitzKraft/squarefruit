@@ -24,6 +24,7 @@ class ProductsController < ApplicationController
 	def create
 		@product = Product.new(product_params)
 		@product.user_id = current_user.id
+		@product.threeD_model_id = params[:threeD_model]
 		respond_to do |format| 
 			if @product.save
 				format.html { redirect_to @product, notice: 'Listing successfully created.' }
@@ -54,6 +55,6 @@ class ProductsController < ApplicationController
 
 	private 
 	def product_params
-		params.require(:product).permit(:title, :body, :image, :product_model)
+		params.require(:product).permit(:title, :body, :threeD_model)
 	end
 end

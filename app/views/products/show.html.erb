@@ -1,6 +1,6 @@
 <div class="col-lg-8 col-lg-offset-2">
 	<h2> <%= @product.title %> </h2>
-	<%= image_tag attachment_url(@product, :image), :style => "max-height: 100%; max-width: 100%;" %>
+	<!-- TODO%= image_tag attachment_url(@product, :image), :style => "max-height: 100%; max-width: 100%;" %-->
 
 	<p class="date">Submitted <%= time_ago_in_words(@product.created_at) %> ago</p> 
 
@@ -19,8 +19,7 @@
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header"><%= @product.title %></div>
-				<div class="modal-body" id="canvas">
-				</div>
+				<div class="modal-body" id="canvas"> </div>
 				<div class="modal-footer">Click outside this window to close</div>
 			</div>
 		</div>
@@ -214,6 +213,7 @@
 			console.log(e);
 		}
 		xhr.open( "GET", '<%= asset_path "clip.stl" %>', true );
+		//xhr.open( "GET", '<%= attachment_url(@product, :threeD_model)  %>', true );
 		xhr.responseType = "arraybuffer";
 		xhr.send( null );
 		renderer = new THREE.WebGLRenderer(); //new THREE.CanvasRenderer();

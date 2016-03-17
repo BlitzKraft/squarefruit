@@ -21,7 +21,8 @@
 			</span>
 		</div--><br>
 		 
-		<%= f.attachment_field :threeD_model, multiple: false, :multipart => true, :onchange => "showStl()", :id => "stl_display", :style => "display: none;" %>
+		<!--%= f.attachment_field :threeD_model, :onchange => "showStl()", :id => "stl_display", :style => "display: none;" %-->
+		<%= f.file_field :threeD_model, html:  {multipart: true },  :onchange => "showStl()", :id => "stl_display", :style => "display: none;" %>
 		<div class="input-append input-group">
 			<input id="stl-display" class="btn form-control" type="text">
 			<span class="input-group-btn">

@@ -1,13 +1,13 @@
 class Product < ActiveRecord::Base
 	belongs_to :user
-	attachment :threeD_model
+	#paperclip
+	has_attached_file :threeD_model
+	#validates_with AttachmentPresenceValidator, attributes: :threeD_model
+	#validates_attachment :threeD_model, presence: true, content_type: { content_type: ["text/plain", "application/octet-stream", "application/sla"] }
+	do_not_validate_attachment_file_type :threeD_model
+	#validates_with AttachmentSizeValidator, attributes: :threeD_model, less_than: 2.megabytes
+	#validates_attachment_content_type
 	#has_many :images, dependent: :destroy
-	#accepts_attachments_for :threeD_model
-	#accepts_attachments_for :images, attachment: :file
-	#attachment :image, content_type: ["image/jpeg", "image/png", "image/gif"]
-	
-	#attachment :product_model
 	validates :title, presence: true, length: {minimum: 3}
-	#validates :body, presence: true
-	##validates :product_model, presence: true
+	validates :body, presence: true
 end

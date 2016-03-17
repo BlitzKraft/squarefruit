@@ -24,6 +24,10 @@ gem 'ruby-filemagic'
 # User signin registration
 gem 'devise'
 
+# Try paperclip
+#gem 'paperclip', '4.1.0'
+gem 'paperclip', github:'thoughtbot/paperclip'
+
 # Uploaded files
 gem 'refile', require: 'refile/rails'
 gem 'refile-mini_magick'

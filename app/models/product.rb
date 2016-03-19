@@ -9,5 +9,5 @@ class Product < ActiveRecord::Base
 	#validates_attachment_content_type
 	#has_many :images, dependent: :destroy
 	validates :title, presence: true, length: {minimum: 3}
-	validates :body, presence: true
+	#validates :body, presence: true
 end

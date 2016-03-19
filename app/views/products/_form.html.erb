@@ -5,8 +5,8 @@
 		<%= f.text_field :title, :class => "form-control", :id => "text" %> <br>
 	</p>
 	<p>
-		<%= f.label :body %><br>
-		<%= f.text_area :body, :class => "form-control", :id => "textArea" %><br>
+		<!--%= f.label :body %><br>
+		< %= f.text_area :body, :class => "form-control", :id => "textArea" % -->
 	</p>
 	<p>
 		<!-- %= f.label :file %> <br>
@@ -22,7 +22,7 @@
 		</div--><br>
 		 
 		<!--%= f.attachment_field :threeD_model, :onchange => "showStl()", :id => "stl_display", :style => "display: none;" %-->
-		<%= f.file_field :threeD_model, html:  {multipart: true },  :onchange => "showStl()", :id => "stl_display", :style => "display: none;" %>
+		<%= f.file_field :threeD_model,:enctype => "multipart/form-data",  :onchange => "showStl()", :id => "stl_display", :style => "display: none;" %>
 		<div class="input-append input-group">
 			<input id="stl-display" class="btn form-control" type="text">
 			<span class="input-group-btn">
@@ -44,7 +44,6 @@
 <script type="text/javascript">
 function showFiles() {
 	var list = document.getElementById('image_list').files;
-	var re= /(\.jpg|\.jpeg|\.bmp|\.gif|\.png)$/i;
 	var txt = '';
 	var invCount = 0;
 	for (var i = 0; i<list.length; i++ ) {

@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
 	protected
 	def configure_permitted_parameters
-		devise_parameter_sanitizer.for(:user) << :threeD_model_id
+		devise_parameter_sanitizer.for(:user) << :threeD_model
 	end
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.

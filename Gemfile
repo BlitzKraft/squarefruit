@@ -33,7 +33,9 @@ gem 'refile', require: 'refile/rails'
 gem 'refile-mini_magick'
 gem 'refile-s3'
 gem 'aws-sdk'
+gem 'mini_magick', '~> 4.4'
 
+gem 'better_errors'
 # Image manipulation
 # gem 'image_science', '~> 1.2', '>= 1.2.6' # Uncomment for images. Has some dependencies
 

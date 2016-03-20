@@ -1,6 +1,5 @@
 <div class="col-md-6">
 <h2>New listing</h2>
-<%= form_for @product do |f| %>
 	<% if @product.errors.any? %>
 		<div id="errors">
 			<h4><%= pluralize(@product.errors.count, "Error") %> prevented the operation</h4>
@@ -11,6 +10,5 @@
 			</ul>
 		</div>
 	<% end %>
-<% end %>
 	<%= render 'form' %>
 </div>

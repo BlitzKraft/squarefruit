@@ -12,7 +12,7 @@
 /db/*.sqlite3-journal
 
 # Ignore uploaded files
-public/system/products/threed_models/000/000/023/original/Cone.stl
+public/system/products/threed_models/
 
 # Ignore all logfiles and tempfiles.
 /log/*

@@ -15,10 +15,9 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require refile
-//= require masonry.pkgd.min
-//= require jsstl/*
-//= require jsstl/three
-//= require jsstl/stats
-//= require jsstl/detector
-//= require spectrum
+//= require masonry.pkgd.min.js
+//= require jsstl/three.js
+//= require jsstl/stats.js
+//= require jsstl/detector.js
+//= require spectrum.js
 //= require_tree .

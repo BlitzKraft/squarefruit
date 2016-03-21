@@ -19,7 +19,7 @@ gem 'bootswatch-rails'
 gem 'autoprefixer-rails'
 
 gem 'coffee-script'
-gem 'ruby-filemagic'
+#gem 'ruby-filemagic'
 
 # User signin registration
 gem 'devise'

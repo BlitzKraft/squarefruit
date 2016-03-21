@@ -76,12 +76,15 @@
 	};
 	var parseStl = function(stl) {
 		var state = '';
+		stl = stl + '';
 		var lines = stl.split('\n');
 		var geo = new THREE.Geometry();
 		var name, parts, line, normal, done, vertices = [];
 		var vCount = 0;
 		stl = null;
-		for (var len = lines.length, i = 0; i < len; i++) {
+		console.log("Begin parsing")
+		//First line contains [object Arraybuffer]. Ignore that
+		for (var len = lines.length, i = 1; i < len; i++) {
 			if (done) {
 				break;
 			}
@@ -202,9 +205,19 @@
 				if ( xhr.status == 200 || xhr.status == 0 ) {
 					var rep = xhr.response; // || xhr.mozResponseArrayBuffer;
 					console.log(rep);
-					parseStlBinary(rep);
-					mesh.rotation.x = 5;
-					mesh.rotation.z = .25;
+					var int8view = rep.slice(0,80);
+					var test = ab2str(int8view);
+					console.log(test);
+					if (test.indexOf("solid") > -1 ) {
+						//xhr.responseType = "string";
+						parseStl(rep);
+					}
+					else {
+						parseStlBinary(rep);
+					}
+					console.log(this.getResponseHeader('content-type'));
+					//mesh.rotation.x = 5;
+					//mesh.rotation.z = .25;
 					console.log('done parsing');
 				}
 			}
@@ -232,4 +245,7 @@
 		//light1.position.z -= 1;
 		renderer.render( scene, camera );
 	}
+function ab2str(buf) {
+	  return String.fromCharCode.apply(null, new Uint8Array(buf));
+}
 </script>

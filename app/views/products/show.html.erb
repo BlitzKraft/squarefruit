@@ -84,7 +84,7 @@
 		stl = null;
 		console.log("Begin parsing")
 		//First line contains [object Arraybuffer]. Ignore that
-		for (var len = lines.length, i = 1; i < len; i++) {
+		for (var len = lines.length, i = 0; i < len; i++) {
 			if (done) {
 				break;
 			}
@@ -204,11 +204,13 @@
 			if ( xhr.readyState == 4 ) {
 				if ( xhr.status == 200 || xhr.status == 0 ) {
 					var rep = xhr.response; // || xhr.mozResponseArrayBuffer;
-					console.log(rep);
+					//console.log(rep);
 					var int8view = rep.slice(0,80);
+					console.log(int8view);
 					var test = ab2str(int8view);
 					console.log(test);
-					if (test.indexOf("solid") > -1 ) {
+					console.log(int8view.indexOf("solid"));
+					if (int8view.indexOf("solid") > -1 ) {
 						//xhr.responseType = "string";
 						parseStl(rep);
 					}
@@ -226,7 +228,8 @@
 			console.log(e);
 		}
 		xhr.open( "GET", '<%= @product.threeD_model.url %>', true );
-		xhr.responseType = "arraybuffer";
+		xhr.responseType = 'text';
+		//xhr.responseType = "arraybuffer";
 		xhr.send( null );
 		renderer = new THREE.WebGLRenderer(); //new THREE.CanvasRenderer();
 		renderer.setSize(900, 600);

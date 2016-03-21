@@ -10,6 +10,6 @@ class Product < ActiveRecord::Base
 	validates :title, presence: true, length: {minimum: 3}
 
 	def s3_credentials 
-		{ :s3_region=> "us-west-2", :bucket => "squarefruit-bucket", :access_key_id => "AKIAI3FB4DWKFXN5XJTA", :secret_access_key => "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"}
+		{ :s3_region=> "us-west-2", :bucket => "squarefruit-bucket", :access_key_id => "AKIAI3FB4DWKFXN5XJTA", :secret_access_key => "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", :s3_host_name => "s3-us-west-2.amazonaws.com" }
 	end
 end

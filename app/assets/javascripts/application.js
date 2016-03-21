@@ -16,6 +16,7 @@
 //= require bootstrap-sprockets
 //= require refile
 //= require masonry.pkgd.min
+//= require jsstl/*
 //= require jsstl/three
 //= require jsstl/stats
 //= require jsstl/detector

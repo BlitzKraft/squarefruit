@@ -16,8 +16,8 @@
 //= require bootstrap-sprockets
 //= require refile
 //= require masonry.pkgd.min.js
-//= require jsstl/three.js
-//= require jsstl/stats.js
-//= require jsstl/detector.js
+//= require three.js
+//= require stats.js
+//= require detector.js
 //= require spectrum.js
 //= require_tree .

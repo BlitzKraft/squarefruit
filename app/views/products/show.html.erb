@@ -203,13 +203,15 @@
 		xhr.onreadystatechange = function () {
 			if ( xhr.readyState == 4 ) {
 				if ( xhr.status == 200 || xhr.status == 0 ) {
-					var rep = xhr.response; // || xhr.mozResponseArrayBuffer;
+					var rep = xhr.responseText; // || xhr.mozResponseArrayBuffer;
 					console.log(rep);
 					var int8view = rep.slice(0,80);
 					var test = ab2str(int8view);
 					console.log(test);
 					if (test.indexOf("solid") > -1 ) {
 						//xhr.responseType = "string";
+						//parseStl(rep);
+						console.log(rep.split("\n", 1));
 						parseStl(rep);
 					}
 					else {

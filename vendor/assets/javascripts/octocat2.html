@@ -216,7 +216,7 @@
 						if ( xhr.status == 200 || xhr.status == 0 ) {
 							var rep = xhr.response; // || xhr.mozResponseArrayBuffer;
 							console.log(rep);
-							parseStlBinary(rep);
+							parseStl(rep);
 							//parseStl(xhr.responseText);
 							mesh.rotation.x = 5;
 							mesh.rotation.z = .25;
@@ -227,11 +227,11 @@
 				xhr.onerror = function(e) {
 					console.log(e);
 				}
-				xhr.open( "GET", 'Octocat-v1.stl', true );
+				xhr.open( "GET", 'Octocat-v2.stl', true );
 				xhr.responseType = "arraybuffer";
-				//xhr.setRequestHeader("Accept","text/plain");
-				//xhr.setRequestHeader("Content-Type","text/plain");
-				//xhr.setRequestHeader('charset', 'x-user-defined');
+				xhr.setRequestHeader("Accept","text/plain");
+				xhr.setRequestHeader("Content-Type","text/plain");
+				xhr.setRequestHeader('charset', 'x-user-defined');
 				xhr.send( null );
 				renderer = new THREE.WebGLRenderer(); //new THREE.CanvasRenderer();
 				renderer.setSize( window.innerWidth, window.innerHeight );

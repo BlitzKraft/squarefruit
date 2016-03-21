@@ -8,7 +8,7 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( favicon.ico )
 Rails.application.config.assets.precompile += %w( sf-logo.png )
 Rails.application.config.assets.precompile += %w( clip.stl )
-
+Rails.application.config.assets.precompile += %w( jsstl/three.js )
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )

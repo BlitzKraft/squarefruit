@@ -1,5 +1,5 @@
 # config/initializers/refile.rb
-require "refile/s3"
+#require "refile/s3"
 
 # aws = {
 #   access_key_id: Rails.application.secrets.access_key,
@@ -8,11 +8,11 @@ require "refile/s3"
 #   bucket: Rails.application.secrets.bucket,
 # }
 
-aws = {
-  access_key_id:"AKIAI3FB4DWKFXN5XJTA",
-  secret_access_key:"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",
-  region:"us-west-2",
-  bucket:"squarefruit-bucket"
-}
-Refile.cache = Refile::S3.new(prefix: "cache", **aws)
-Refile.store = Refile::S3.new(prefix: "store", **aws)
+#aws = {
+#  access_key_id:"AKIAI3FB4DWKFXN5XJTA",
+#  secret_access_key:"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",
+#  region:"us-west-2",
+#  bucket:"squarefruit-bucket"
+#}
+#Refile.cache = Refile::S3.new(prefix: "cache", **aws)
+#Refile.store = Refile::S3.new(prefix: "store", **aws)

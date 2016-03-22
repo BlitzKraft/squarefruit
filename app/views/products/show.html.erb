@@ -205,27 +205,15 @@
 		xhr.onreadystatechange = function () {
 			if ( xhr.readyState == 4 ) {
 				if ( xhr.status == 200 || xhr.status == 0 ) {
-<<<<<<< HEAD
-					var rep = xhr.responseText; // || xhr.mozResponseArrayBuffer;
-					console.log(rep);
-=======
 					var rep = xhr.response; // || xhr.mozResponseArrayBuffer;
 					//console.log(rep);
->>>>>>> dev
 					var int8view = rep.slice(0,80);
 					//console.log(int8view);
 					var test = ab2str(int8view);
 					//console.log(test);
 					//console.log(int8view.indexOf("solid"));
 					if (stl_bin) {
-						//xhr.responseType = "string";
-<<<<<<< HEAD
-						//parseStl(rep);
-						console.log(rep.split("\n", 1));
-						parseStl(rep);
-=======
 						parseStlBinary(rep);
->>>>>>> dev
 					}
 					else {
 						parseStl(rep);

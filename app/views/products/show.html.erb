@@ -28,6 +28,8 @@
 <script type="text/javascript">
 	var camera, scene, renderer,
 	geometry, material, mesh, light1, stats;
+	var stl_bin = <%= @product.stl_binary %>
+	console.log("<%= @product.stl_binary %>")
 	function trim (str) {
 		str = str.replace(/^\s+/, '');
 		for (var i = str.length - 1; i >= 0; i--) {
@@ -82,7 +84,7 @@
 		var name, parts, line, normal, done, vertices = [];
 		var vCount = 0;
 		stl = null;
-		console.log("Begin parsing")
+		//console.log("Begin parsing")
 		//First line contains [object Arraybuffer]. Ignore that
 		for (var len = lines.length, i = 0; i < len; i++) {
 			if (done) {
@@ -206,18 +208,18 @@
 					var rep = xhr.response; // || xhr.mozResponseArrayBuffer;
 					//console.log(rep);
 					var int8view = rep.slice(0,80);
-					console.log(int8view);
+					//console.log(int8view);
 					var test = ab2str(int8view);
-					console.log(test);
-					console.log(int8view.indexOf("solid"));
-					if (int8view.indexOf("solid") > -1 ) {
+					//console.log(test);
+					//console.log(int8view.indexOf("solid"));
+					if (stl_bin) {
 						//xhr.responseType = "string";
-						parseStl(rep);
-					}
-					else {
 						parseStlBinary(rep);
 					}
-					console.log(this.getResponseHeader('content-type'));
+					else {
+						parseStl(rep);
+					}
+					//console.log(this.getResponseHeader('content-type'));
 					//mesh.rotation.x = 5;
 					//mesh.rotation.z = .25;
 					console.log('done parsing');
@@ -228,8 +230,11 @@
 			console.log(e);
 		}
 		xhr.open( "GET", '<%= @product.threeD_model.url %>', true );
-		xhr.responseType = 'text';
-		//xhr.responseType = "arraybuffer";
+		if (stl_bin) {
+			xhr.responseType = "arraybuffer";
+		} else {
+			xhr.responseType = 'text';
+		}
 		xhr.send( null );
 		renderer = new THREE.WebGLRenderer(); //new THREE.CanvasRenderer();
 		renderer.setSize(900, 600);

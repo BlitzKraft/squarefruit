@@ -74,6 +74,10 @@
 			}
 		));
 		scene.add(mesh);
+		geo.computeBoundingSphere();
+		var cam_rad = geo.computeBoundingSphere()
+		console.log("cam_rad");
+		console.log(cam_rad);
 		stl = null;
 	};
 	var parseStl = function(stl) {
@@ -84,6 +88,9 @@
 		var name, parts, line, normal, done, vertices = [];
 		var vCount = 0;
 		stl = null;
+		
+		console.log(geo.computeBoundingSphere());
+		scene.add(geo.computeBoundingSphere());
 		//console.log("Begin parsing")
 		//First line contains [object Arraybuffer]. Ignore that
 		for (var len = lines.length, i = 0; i < len; i++) {
@@ -172,6 +179,7 @@
 							parseFloat(parts[4])
 						];
 						if (vCount % 1000 === 0) {
+							//print one vertex in thousand
 							console.log(normal);
 						}
 						state = 'facet normal';
@@ -193,7 +201,7 @@
 		scene = new THREE.Scene();
 		camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
 		camera.position.z = 70;
-		camera.position.y = 0;
+		camera.position.y = 20;
 		scene.add( camera );
 		var directionalLight = new THREE.DirectionalLight( 0xffffff );
 		directionalLight.position.x = 0; 

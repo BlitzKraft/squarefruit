@@ -4,6 +4,7 @@ class Product < ActiveRecord::Base
 		:storage => :s3,
 		:s3_credentials => Proc.new { |a| a.instance.s3_credentials }
 	validates_attachment :threeD_model, presence: true, content_type: { content_type: ["text/plain", "application/octet-stream", "application/sla"] }
+	validates_attachment_size :threeD_model, :less_than => 30.megabytes
 	do_not_validate_attachment_file_type :threeD_model
 	#validates_with AttachmentSizeValidator, attributes: :threeD_model, less_than: 2.megabytes
 	validates :title, presence: true, length: {minimum: 3}

@@ -6,7 +6,6 @@ class Product < ActiveRecord::Base
 	validates_attachment :threeD_model, presence: true, content_type: { content_type: ["text/plain", "application/octet-stream", "application/sla"] }
 	do_not_validate_attachment_file_type :threeD_model
 	#validates_with AttachmentSizeValidator, attributes: :threeD_model, less_than: 2.megabytes
-	#has_many :images, dependent: :destroy
 	validates :title, presence: true, length: {minimum: 3}
 
 	def s3_credentials 

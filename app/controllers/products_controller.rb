@@ -2,8 +2,10 @@ class ProductsController < ApplicationController
 	before_filter :require_permission, only: :edit
 	def index
 		#@products = Product.all.order('created_at DESC')
-		if !current_user.nil?
-			@products = current_user.products.all
+		if current_user.try(:admin?)
+			@products = Product.all.order('created_at DESC')
+		elsif !current_user.nil?
+			@products = current_user.products.all.order('created_at DESC')
 		end
 	end
 

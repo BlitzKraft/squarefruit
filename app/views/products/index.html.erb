@@ -5,10 +5,12 @@
 </div>
 
 <div class="container grid" id="productIndex" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 350, "gutter": 20 }'>
+	<% if !@products.nil? %> 
 	<% @products.each do |prod| %>
 		<div class="grid-item box panel panel-default" style="min-width: 250px;max-width: 30%;">
 			<%= link_to prod.title, prod %>
 			<!-- TODO %= link_to((image_tag prod.image_id, :style => "display: inline-block; max-width: 100%; max-height: 100%;"), prod) %-->
 		</div>
+	<% end %>
 	<% end %>
 </div>

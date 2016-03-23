@@ -31,7 +31,7 @@
 	</p>
 	<p>
 		<!-- %= f.label :title %><br-->
-		<%= f.text_field :title, :placeholder => "(optional)", :class => "form-control", :id => "text" %> <br>
+		<%= f.text_field :title, :placeholder => "(optional title)", :class => "form-control", :id => "titleText" %> <br>
 	</p>
 	<div class="btn btn-group">
 		<%= submit_tag "Upload & Submit", :class => "btn btn-primary" %>
@@ -68,6 +68,7 @@ function showStl() {
 	var name = document.getElementById('stl_display').value.split('\\').pop();
 	if(name.split('.').pop().toLowerCase() == 'stl') {
 		document.getElementById('stl-display').value = name;
+		document.getElementById('titleText').value = name.split('.')[0];
 	} else {
 		alert('Not an stl file');
 	}

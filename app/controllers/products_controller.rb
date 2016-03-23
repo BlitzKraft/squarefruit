@@ -1,7 +1,10 @@
 class ProductsController < ApplicationController
 	before_filter :require_permission, only: :edit
 	def index
-		@products = Product.all.order('created_at DESC')
+		#@products = Product.all.order('created_at DESC')
+		if !current_user.nil?
+			@products = current_user.products.all
+		end
 	end
 
 	def new

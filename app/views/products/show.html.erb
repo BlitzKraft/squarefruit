@@ -73,10 +73,6 @@ function renderSTL() {
 			}
 		));
 		scene.add(mesh);
-		//geo.computeBoundingSphere();
-		//var cam_rad = geo.computeBoundingSphere()
-		//console.log("cam_rad");
-		//console.log(cam_rad);
 		stl = null;
 	};
 	var parseStl = function(stl) {
@@ -88,8 +84,6 @@ function renderSTL() {
 		var vCount = 0;
 		stl = null;
 		
-		console.log(geo.computeBoundingSphere());
-		scene.add(geo.computeBoundingSphere());
 		for (var len = lines.length, i = 0; i < len; i++) {
 			if (done) {
 				break;
@@ -228,7 +222,8 @@ function renderSTL() {
 					mesh.rotation.x = 5;
 					mesh.rotation.z = .25;
 					var bbox = new THREE.BoundingBoxHelper( mesh );
-					bbox.update()
+					bbox.update();
+					//scene.add(bbox);
 					var grid = new THREE.GridHelper(10, 1);
 					scene.add(grid);
 					var point = new THREE.Vector3((bbox.box.max.x + bbox.box.min.x)/2, (bbox.box.max.y + bbox.box.min.y)/2, (bbox.box.max.z + bbox.box.min.z)/2 );
@@ -251,12 +246,13 @@ function renderSTL() {
 		renderer = new THREE.WebGLRenderer(); //new THREE.CanvasRenderer();
 		if (typeof cv === 'undefined') {
 		cv = document.getElementById("canvas")
-			cv.appendChild(renderer.domElement );
-			$("#canvas").css('margin','0 auto');
+		cv.appendChild(renderer.domElement );
 		canvasSize = Math.max(cv.parentElement.clientWidth, cv.parentElement.clientHeight, 300);
 		//TODO anti aliasing via supersampling
-		var sampleRatio = 1;
+		sampleRatio = 1;
 		renderer.setSize(canvasSize * sampleRatio, canvasSize * sampleRatio * 0.6666);
+		console.log(canvasSize);
+
 		}
 	}
 	function animate() {

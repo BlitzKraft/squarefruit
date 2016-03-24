@@ -5,12 +5,31 @@
 
 	<p class="body"><%= @product.body%></p>
 
-	<div class="btn btn-primary pull-left" data-toggle="modal" data-target="#3Dview" >View 3D</div>
 	<% if user_signed_in? %>
-		<% if current_user.id == @product.user_id %>
-			<div class="btn btn-group pull-right">
-				<%= link_to "Delete", product_path(@product), method: :delete, data: {confirm: "Are you sure?" }, :class => "btn btn-danger" %>
+		<div class="progress" style="display: block;">
+			<% #Upload %>
+			<div class="progress-bar progress-bar-primary" style="width: 12.5%;"></div>
+			<% #Review %>
+			<div class="progress-bar progress-bar-warning" style="width: 12.5%;"></div>
+			<% #Optimize %>
+			<div class="progress-bar progress-bar-info" style="width: 12.5%;"></div>
+			<% #Approve %>
+			<div class="progress-bar progress-bar-success" style="width: 12.5%;"></div>
+			<% #Payment %>
+			<div class="progress-bar progress-bar-danger" style="width: 12.5%;"></div>
+			<% #Printing %>
+			<div class="progress-bar progress-bar-danger progress-bar-striped active" style="width: 12.5%;"></div>
+			<% #Printed %>
+			<div class="progress-bar progress-bar-info" style="width: 12.5%;"></div>
+			<% #Shipped %>
+			<div class="progress-bar progress-bar-success" style="width: 12.5%;"></div>
+		</div>
+			<div class="btn btn-group pull-left">
+				<%= link_to "Pay", root_path, :class => "btn btn-success" %>
+	<div class="btn btn-primary" data-toggle="modal" data-target="#3Dview" >View 3D</div>
 			</div>
+		<% if current_user.id == @product.user_id or current_user.admin? %>
+				<%= link_to "Delete", product_path(@product), method: :delete, data: {confirm: "Are you sure?" }, :class => "btn btn-danger pull-right" %>
 		<% end %>
 	<% end %>
 	<div class="modal fade" id="3Dview">

@@ -19,6 +19,8 @@ class ProductsController < ApplicationController
 
 	def update
 		@product = Product.find(params[:id])
+		isBinaryString = Paperclip.io_adapters.for(@product.threeD_model).read(80)
+		@product.stl_binary = !(isBinaryString.include? "solid")
 		if @product.update(product_params)
 			redirect_to @product
 		else
@@ -29,12 +31,9 @@ class ProductsController < ApplicationController
 	def create
 		@product = Product.new(product_params)
 		@product.user_id = current_user.id
-		respond_to do |format| 
 		isBinaryString = Paperclip.io_adapters.for(@product.threeD_model).read(80)
-		#logger.debug "This is the string: #{isBinaryString}"
-		#result = (isBinaryString.include? "solid")
-		#logger.debug "This is the result: #{result}"
 		@product.stl_binary = !(isBinaryString.include? "solid")
+		respond_to do |format| 
 		#logger.debug "This is in the table #{@product.id} : #{@product.stl_binary}"
 			if @product.save
 				format.html { redirect_to @product, notice: 'Listing successfully created.' }

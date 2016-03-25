@@ -24,8 +24,8 @@
 					<td><%= prod.id %></td>
 					<td><%= User.find(prod.user_id).email %></td>
 					<td><%= link_to prod.threeD_model_file_name, product_path(prod) %></td>
-					<td><%= prod.status %></td>
 					<td>
+						<%= form_for prod do |f| %>
 						<select class="form-control" id="select">
 							<option>Uploaded</option>
 							<option>Review</option>
@@ -36,6 +36,7 @@
 							<option>Printed</option>
 							<option>Shipped</option>
 						</select>
+						<% end %>
 					</td>
 					<td><%= prod.price %></td>
 				</tr>

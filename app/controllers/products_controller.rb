@@ -46,7 +46,11 @@ class ProductsController < ApplicationController
 	end
 
 	def show
-		@product = Product.find(params[:id])
+		@product = Product.find(params[:id]) or not_found
+	end
+
+	def not_found
+		raise ActiveRecord::RecordNotFound
 	end
 
 	def destroy

@@ -1,24 +1,12 @@
 <div class="col-md-6">
 	<%= form_for @product do |f| %>
+	<!--p>
+		< %= f.label :body %><br>
+		< %= f.text_area :body, :class => "form-control", :id => "textArea" % >
+	</p-->
 	<p>
-		<!--%= f.label :body %><br>
-		< %= f.text_area :body, :class => "form-control", :id => "textArea" % -->
-	</p>
-	<p>
-		<!-- %= f.label :file %> <br>
-		<TODO %= f.attachment_field  :image, multiple: true, :id => "image_list", :onchange => "showFiles()", :style => "display: none;" %-->
-		<!-- %= f.attachment_field  :image, multiple: true, :id => "image_list", :onchange => "showFiles()", :style => "display: none;" %>
-		<div class="input-append input-group">
-			<input id="file-display" class="btn form-control" type="text">
-			<span class="input-group-btn">
-				<button class="btn btn-primary" onclick="document.getElementById('image_list').click()" type="button">
-					Choose image(s)
-				</button>
-			</span>
-		</div--><br>
-		 
-		<!--%= f.attachment_field :threeD_model, :onchange => "showStl()", :id => "stl_display", :style => "display: none;" %-->
-		<%= f.file_field :threeD_model,:enctype => "multipart/form-data",  :onchange => "showStl()", :id => "stl_display", :style => "display: none;", :accept => ".stl" %>
+		<br>
+		<%= f.file_field :threeD_model, :enctype => "multipart/form-data",  :onchange => "showStl()", :id => "stl_display", :style => "display: none;", :accept => ".stl" %>
 		<div class="input-append input-group">
 			<input id="stl-display" class="btn form-control" type="text">
 			<span class="input-group-btn">
@@ -30,7 +18,6 @@
 		<br>
 	</p>
 	<p>
-		<!-- %= f.label :title %><br-->
 		<%= f.text_field :title, :placeholder => "(optional title)", :class => "form-control", :id => "titleText" %> <br>
 	</p>
 	<div class="btn btn-group">
@@ -40,7 +27,6 @@
 	<% end %>
 </div>
 
-<!-- TODO show the filename in the input field -->
 <script type="text/javascript">
 function showFiles() {
 	var list = document.getElementById('image_list').files;

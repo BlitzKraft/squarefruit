@@ -1,10 +1,12 @@
 class ChargesController < ApplicationController
+	Stripe.api_key = "sk_test_DQ0J9xxr2hKTAvVyvdDmr1Ds"
 	def new
 	end
 	
 	def create
+		#prod = Product.find(params[:id])
 		# @amount is in cents
-		@amount = Product.find([:id]).price * 100
+		@amount = @product.price * 100
 		customer = Stripe::Customer.create(
 			:email => params[:stripeEmail],
 			:source => params[:stripeToken]
@@ -12,8 +14,7 @@ class ChargesController < ApplicationController
 		charge = Stripe::Charge.create(
 			:customer => customer.id,
 			:amount => @amount,
-			# TODO change this to part name
-			:description => '3D print',
+			:description => 
 			:currency => 'usd'
 		)
 

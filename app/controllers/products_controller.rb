@@ -3,9 +3,11 @@ class ProductsController < ApplicationController
 	def index
 		#@products = Product.all.order('created_at DESC')
 		if current_user.try(:admin?)
-			@products = Product.all.order('created_at DESC')
+			#@products = Product.all.order('created_at DESC')
+			@products = Product.all.paginate(:page => params[:page], :per_page => 20).order('created_at DESC')
 		elsif !current_user.nil?
-			@products = current_user.products.all.order('created_at DESC')
+			#@products = current_user.products.all.order('created_at DESC')
+			@products = current_user.products.all.paginate(:page => params[:page], :per_page => 20).order('created_at DESC')
 		end
 	end
 

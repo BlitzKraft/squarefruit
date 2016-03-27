@@ -23,6 +23,7 @@
 					<tr style="background-color: ">
 						<td><%= prod.id %></td>
 						<td><%= User.find(prod.user_id).email %></td>
+						<!-- %= #TODO limit requests to reduce server load % -->
 						<td><%= link_to prod.threeD_model_file_name, product_path(prod) %></td>
 						<td>
 							<%= form_for prod do |f| %>
@@ -45,11 +46,29 @@
 			</table>
 				
 		<% else %>
+			<table class="table table-striped table-hover" >
+				<thead>
+					<tr>
+						<th>Part name</th>
+						<th>Status</th>
+						<th>Price</th>
+					</tr>
+				</thead>
+				<tbody>
 			<% @products.each do |prod| %>
-				<div class="grid-item box panel panel-default" style="min-width: 250px;max-width: 30%;">
-					<%= link_to prod.title, prod %>
-				</div>
+					<tr style="background-color: ">
+						<td><%= prod.id %></td>
+						<td><%= User.find(prod.user_id).email %></td>
+						<!-- %= #TODO limit requests to reduce server load % -->
+						<td><%= link_to prod.threeD_model_file_name, product_path(prod) %></td>
+						<td>Test
+						</td>
+						<td><%= prod.price %></td>
+					</tr>
 			<% end %>
+				</tbody>
+			</table>
 		<% end %>
+			<%= will_paginate @products %>
 	<% end %>
 </div>

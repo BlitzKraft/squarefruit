@@ -1,5 +1,9 @@
 class ProductsController < ApplicationController
 	before_filter :require_permission, only: :edit
+	# TODO  implement user check. Users shouldn't see others' models
+	# The function is written but gets feminazi 
+	# (TRIGGERED for no reason)
+	# before_filter :user_is_current_user
 	def index
 		#@products = Product.all.order('created_at DESC')
 		if current_user.try(:admin?)
@@ -49,6 +53,8 @@ class ProductsController < ApplicationController
 
 	def show
 		@product = Product.find(params[:id]) or not_found
+		@product.price = params[:price]
+		@product.save
 	end
 
 	def not_found
@@ -71,5 +77,12 @@ class ProductsController < ApplicationController
 	private 
 	def product_params
 		params.require(:product).permit(:id, :title, :body, :threeD_model)
+	end
+
+	def user_is_current_user
+		unless current_user.id == Product.find(params[:id]).user_id
+			flash[:notice] = "You are not authorized."
+			redirect_to root_path
+		end
 	end
 end

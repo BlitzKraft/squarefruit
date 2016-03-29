@@ -1,9 +1,5 @@
 <div class="col-md-6">
 	<%= form_for @product do |f| %>
-	<!--p>
-		< %= f.label :body %><br>
-		< %= f.text_area :body, :class => "form-control", :id => "textArea" % >
-	</p-->
 	<p>
 		<br>
 		<%= f.file_field :threeD_model, :enctype => "multipart/form-data",  :onchange => "showStl()", :id => "stl_display", :style => "display: none;", :accept => ".stl" %>

@@ -25,24 +25,13 @@ gem 'coffee-script'
 gem 'devise'
 
 # Uploaded files
-# Try paperclip
 gem 'paperclip', '~> 4.3.1', github:'thoughtbot/paperclip'
 
-# TODO remove refile. 
-# Somewhere there is a reference to it that breaks the server.
-gem 'refile', require: 'refile/rails'
-#gem 'refile-mini_magick'
-#gem 'refile-s3'
 gem 'aws-sdk', '~> 2.2.27'
 gem 'mini_magick', '~> 4.4'
-
-# Image manipulation
-
-# Comments with threading
-# gem 'acts_as_commentable_with_threading', '~> 2.0', '>= 2.0.1'
-
-# For voting 
-gem 'acts_as_votable', '~> 0.10.0'
+gem 'stripe', '~> 1.36'
+gem 'will_paginate', '~> 3.1'
+gem 'will_paginate-bootstrap', '~> 1.0', '>= 1.0.1'
 
 # Helps with forms
 gem 'simple_form', '~> 3.0.2'

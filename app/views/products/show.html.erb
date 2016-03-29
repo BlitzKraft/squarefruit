@@ -1,35 +1,73 @@
 <div class="col-lg-8 col-lg-offset-2">
 	<h2> <%= @product.title %> </h2>
-	<!--TODO%= image_tag attachment_url(@product, :image), :style => "max-height: 100%; max-width: 100%;" %-->
 
 	<p class="date">Submitted <%= time_ago_in_words(@product.created_at) %> ago</p> 
 
 	<p class="body"><%= @product.body%></p>
 
-	<div class="btn btn-primary pull-left" data-toggle="modal" data-target="#3Dview">View 3D</div>
 	<% if user_signed_in? %>
-		<% if current_user.id == @product.user_id %>
-			<div class="btn btn-group pull-right">
-				<%= link_to "Edit", edit_product_path, :class => "btn btn-default" %>
-				<%= link_to "Delete", product_path(@product), method: :delete, data: {confirm: "Are you sure?" }, :class => "btn btn-danger" %>
+		<h4>Status</h4>
+		<div class="progress" style="display: block;">
+			<% #Upload %>
+			<div class="progress-bar progress-bar-primary" style="width: 12.5%;"></div>
+			<% #Review %>
+			<div class="progress-bar progress-bar-warning" style="width: 12.5%;"></div>
+			<% #Optimize %>
+			<div class="progress-bar progress-bar-info" style="width: 12.5%;"></div>
+			<% #Approve %>
+			<div class="progress-bar progress-bar-success" style="width: 12.5%;"></div>
+			<% #Payment %>
+			<div class="progress-bar progress-bar-danger" style="width: 12.5%;"></div>
+			<% #Printing %>
+			<div class="progress-bar progress-bar-danger progress-bar-striped active" style="width: 12.5%;"></div>
+			<% #Printed %>
+			<div class="progress-bar progress-bar-info" style="width: 12.5%;"></div>
+			<% #Shipped %>
+			<div class="progress-bar progress-bar-success" style="width: 12.5%;"></div>
+		</div>
+		<div class="btn-group">
+			<% if !@product.price.nil? %>
+				<%= link_to "Order", new_charge_path(:prod_id => @product.id), :class => "btn btn-success" %>
+			<% end %>
+			<div class="btn btn-primary" data-toggle="modal" data-target="#3Dview" >View 3D</div>
+			<% if current_user.id == @product.user_id or current_user.admin? %>
+				<%= link_to "Delete", product_path(@product), method: :delete, data: {confirm: "Are you sure?" }, :class => "btn btn-danger pull-right" %>
+			<% end %>
+		</div>
+ <br>
+		<% if current_user.admin? %>
+		<div class="panel panel-danger" style="margin-top: 20px;">
+			<div class="panel-heading">Admin panel</div>
+			<div class="panel-body">
+			<%= form_for @product do |f| %>
+				<div class="input-group">
+					<span class="input-group-addon">$</span>
+					<%= f.text_field :price, :placeholder => "enter price here", :type => "text", :class => "form-control" %>
+					<span class="input-group-btn"><button class="btn btn-default">Confirm price</button></span>
+				</div>
+			<% end %>
 			</div>
+		</div>
 		<% end %>
 	<% end %>
 	<div class="modal fade" id="3Dview">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
+		<div id="modal_3D" class="modal-dialog modal-lg">
+			<div class="modal-content" id="test">
 				<div class="modal-header"><%= @product.title %></div>
-				<div class="modal-body" id="canvas"> </div>
+				<div class="modal-body" id="canvas" style="display: block;padding: 0;"> </div>
 				<div class="modal-footer">Click outside this window to close</div>
 			</div>
 		</div>
 	</div>
 </div>
 <script type="text/javascript">
+
+function renderSTL() {
 	var camera, scene, renderer,
 	geometry, material, mesh, light1, stats;
 	var stl_bin = <%= @product.stl_binary %>
 	console.log("<%= @product.stl_binary %>")
+
 	function trim (str) {
 		str = str.replace(/^\s+/, '');
 		for (var i = str.length - 1; i >= 0; i--) {
@@ -40,6 +78,7 @@
 		}
 		return str;
 	}
+
 	var parseStlBinary = function(stl) {
 		var geo = new THREE.Geometry();
 		var dv = new DataView(stl, 80); // 80 == unused header
@@ -74,12 +113,9 @@
 			}
 		));
 		scene.add(mesh);
-		geo.computeBoundingSphere();
-		var cam_rad = geo.computeBoundingSphere()
-		console.log("cam_rad");
-		console.log(cam_rad);
 		stl = null;
 	};
+
 	var parseStl = function(stl) {
 		var state = '';
 		stl = stl + '';
@@ -89,10 +125,6 @@
 		var vCount = 0;
 		stl = null;
 		
-		console.log(geo.computeBoundingSphere());
-		scene.add(geo.computeBoundingSphere());
-		//console.log("Begin parsing")
-		//First line contains [object Arraybuffer]. Ignore that
 		for (var len = lines.length, i = 0; i < len; i++) {
 			if (done) {
 				break;
@@ -197,11 +229,12 @@
 	};
 	init();
 	animate();
+
 	function init() {
 		scene = new THREE.Scene();
-		camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
+		camera = new THREE.PerspectiveCamera( 90, 1.5, 1, 10000 );
 		camera.position.z = 70;
-		camera.position.y = 20;
+		//camera.position.y = 20;
 		scene.add( camera );
 		var directionalLight = new THREE.DirectionalLight( 0xffffff );
 		directionalLight.position.x = 0; 
@@ -209,7 +242,9 @@
 		directionalLight.position.z = 1; 
 		directionalLight.position.normalize();
 		scene.add( directionalLight );
+		//TODO take xhr out so that it happens only once
 		var xhr = new XMLHttpRequest();
+
 		xhr.onreadystatechange = function () {
 			if ( xhr.readyState == 4 ) {
 				if ( xhr.status == 200 || xhr.status == 0 ) {
@@ -229,10 +264,19 @@
 					//console.log(this.getResponseHeader('content-type'));
 					mesh.rotation.x = 5;
 					mesh.rotation.z = .25;
+					var bbox = new THREE.BoundingBoxHelper( mesh );
+					bbox.update();
+					//scene.add(bbox);
+					var grid = new THREE.GridHelper(10, 1);
+					scene.add(grid);
+					var point = new THREE.Vector3((bbox.box.max.x + bbox.box.min.x)/2, (bbox.box.max.y + bbox.box.min.y)/2, (bbox.box.max.z + bbox.box.min.z)/2 );
+					camera.position.z = bbox.box.max.z * 2 ;
+					camera.far = Math.max(bbox.box.max.x, bbox.box.max.y, bbox.box.max.z) * 2
 					console.log('done parsing');
 				}
 			}
 		}
+
 		xhr.onerror = function(e) {
 			console.log(e);
 		}
@@ -244,15 +288,23 @@
 		}
 		xhr.send( null );
 		renderer = new THREE.WebGLRenderer(); //new THREE.CanvasRenderer();
-		renderer.setSize(900, 600);
-		//renderer.setSize( window.innerWidth, window.innerHeight );
-		document.getElementById("canvas").appendChild(renderer.domElement );
-		//document.body.appendChild( renderer.domElement );
+		if (typeof cv === 'undefined') {
+		cv = document.getElementById("canvas")
+		cv.appendChild(renderer.domElement );
+		canvasSize = Math.max(cv.parentElement.clientWidth, cv.parentElement.clientHeight, 300);
+		//TODO anti aliasing via supersampling
+		sampleRatio = 1;
+		renderer.setSize(canvasSize * sampleRatio, canvasSize * sampleRatio * 0.6666);
+		console.log(canvasSize);
+
+		}
 	}
+
 	function animate() {
 		requestAnimationFrame( animate );
 		render();
 	}
+
 	function render() {
 		if (mesh) {
 			mesh.rotation.z += 0.02;
@@ -260,7 +312,15 @@
 		//light1.position.z -= 1;
 		renderer.render( scene, camera );
 	}
+}
+
 function ab2str(buf) {
 	  return String.fromCharCode.apply(null, new Uint8Array(buf));
 }
+
+$("#3Dview").on('shown.bs.modal', function () {
+	var cv;
+	renderSTL();
+	})
+
 </script>

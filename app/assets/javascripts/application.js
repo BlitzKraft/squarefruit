@@ -14,10 +14,9 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
-//= require refile
 //= require masonry.pkgd.min.js
 //= require three.js
 //= require stats.js
 //= require detector.js
-//= require spectrum.js
+//= require stripe.js
 //= require_tree .

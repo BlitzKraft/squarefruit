@@ -8,6 +8,7 @@ class Product < ActiveRecord::Base
 	do_not_validate_attachment_file_type :threeD_model
 	#validates_with AttachmentSizeValidator, attributes: :threeD_model, less_than: 2.megabytes
 	validates :title, presence: true, length: {minimum: 3}
+	enum status: { uploaded: 0, reviewed: 1, optimized: 2, approved: 3, paid: 4, printing: 5, printed: 6, shipped: 7 }
 
 	def s3_credentials 
 		{ :s3_region=> "us-west-2", :bucket => "squarefruit-bucket", :access_key_id => "AKIAI3FB4DWKFXN5XJTA", :secret_access_key => "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", :s3_host_name => "s3-us-west-2.amazonaws.com" }

@@ -1,0 +1,40 @@
+<h3></h3>
+
+
+<div class="panel panel-default">
+	<div class="panel-heading">Pay and confirm your order</div>
+	<div class="panel-body">
+		Part name: <%= @product.threeD_model_file_name %>
+		<br>
+		Part price: $<%= @product.price %>
+		<form action="" method="POST" id="payment-form" class="form-inline"> 
+			<span class="payment-errors"></span>
+				<div class="form-row">
+					<label>
+						<span>Card Number</span>
+						<input type="text" class="form-control" size="20" data-stripe="number"/>
+					</label>
+				</div>
+			<div class="form-row">
+				<label>
+					<span>CVC</span>
+					<input type="text" class="form-control" size="4" data-stripe="cvc"/>
+				</label>
+			</div>
+			<div class="form-row row">
+				<div class="form-group input-group-md col-xs-6">
+					<label> Expiration (MM/YYYY) </label>
+					<input type="text" class="form-control" size="2" data-stripe="exp-month"/> /
+					<input type="text" class="form-control" size="4" data-stripe="exp-year"/>
+				</div>
+			</div>
+			<br>
+			<button type="submit" class="btn btn-primary">Submit Payment</button>
+		</form>
+	</div>
+</div>
+<script type="text/javascript">
+  // This identifies your website in the createToken call below
+  Stripe.setPublishableKey('pk_test_eAighUZosMI5jQ5RXBvNS4FX');
+    // ...
+</script>

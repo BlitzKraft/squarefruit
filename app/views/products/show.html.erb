@@ -25,12 +25,29 @@
 			<% #Shipped %>
 			<div class="progress-bar progress-bar-success" style="width: 12.5%;"></div>
 		</div>
-			<div class="btn btn-group pull-left">
-				<%= link_to "Order", root_path, :class => "btn btn-success" %>
-	<div class="btn btn-primary" data-toggle="modal" data-target="#3Dview" >View 3D</div>
-			</div>
-		<% if current_user.id == @product.user_id or current_user.admin? %>
+		<div class="btn-group">
+			<% if !@product.price.nil? %>
+				<%= link_to "Order", new_charge_path(:prod_id => @product.id), :class => "btn btn-success" %>
+			<% end %>
+			<div class="btn btn-primary" data-toggle="modal" data-target="#3Dview" >View 3D</div>
+			<% if current_user.id == @product.user_id or current_user.admin? %>
 				<%= link_to "Delete", product_path(@product), method: :delete, data: {confirm: "Are you sure?" }, :class => "btn btn-danger pull-right" %>
+			<% end %>
+		</div>
+ <br>
+		<% if current_user.admin? %>
+		<div class="panel panel-danger" style="margin-top: 20px;">
+			<div class="panel-heading">Admin panel</div>
+			<div class="panel-body">
+			<%= form_for @product do |f| %>
+				<div class="input-group">
+					<span class="input-group-addon">$</span>
+					<%= f.text_field :price, :placeholder => "enter price here", :type => "text", :class => "form-control" %>
+					<span class="input-group-btn"><button class="btn btn-default">Confirm price</button></span>
+				</div>
+			<% end %>
+			</div>
+		</div>
 		<% end %>
 	<% end %>
 	<div class="modal fade" id="3Dview">
@@ -44,11 +61,13 @@
 	</div>
 </div>
 <script type="text/javascript">
+
+var stl_loaded = false;
 function renderSTL() {
 	var camera, scene, renderer,
-	geometry, material, mesh, light1, stats;
+	    geometry, material, mesh, light1, stats;
 	var stl_bin = <%= @product.stl_binary %>
-	console.log("<%= @product.stl_binary %>")
+
 	function trim (str) {
 		str = str.replace(/^\s+/, '');
 		for (var i = str.length - 1; i >= 0; i--) {
@@ -59,6 +78,7 @@ function renderSTL() {
 		}
 		return str;
 	}
+
 	var parseStlBinary = function(stl) {
 		var geo = new THREE.Geometry();
 		var dv = new DataView(stl, 80); // 80 == unused header
@@ -95,6 +115,7 @@ function renderSTL() {
 		scene.add(mesh);
 		stl = null;
 	};
+
 	var parseStl = function(stl) {
 		var state = '';
 		stl = stl + '';
@@ -208,6 +229,7 @@ function renderSTL() {
 	};
 	init();
 	animate();
+
 	function init() {
 		scene = new THREE.Scene();
 		camera = new THREE.PerspectiveCamera( 90, 1.5, 1, 10000 );
@@ -220,8 +242,8 @@ function renderSTL() {
 		directionalLight.position.z = 1; 
 		directionalLight.position.normalize();
 		scene.add( directionalLight );
-		//TODO take xhr out so that it happens only once
 		var xhr = new XMLHttpRequest();
+
 		xhr.onreadystatechange = function () {
 			if ( xhr.readyState == 4 ) {
 				if ( xhr.status == 200 || xhr.status == 0 ) {
@@ -253,16 +275,20 @@ function renderSTL() {
 				}
 			}
 		}
+
 		xhr.onerror = function(e) {
 			console.log(e);
 		}
-		xhr.open( "GET", '<%= @product.threeD_model.url %>', true );
+		if(!stl_loaded) {
+			xhr.open( "GET", '<%= @product.threeD_model.url %>', true );
+			stl_loaded = true;
+			xhr.send( null );
+		}
 		if (stl_bin) {
 			xhr.responseType = "arraybuffer";
 		} else {
-			xhr.responseType = 'text';
+			xhr.responseType = "text";
 		}
-		xhr.send( null );
 		renderer = new THREE.WebGLRenderer(); //new THREE.CanvasRenderer();
 		if (typeof cv === 'undefined') {
 		cv = document.getElementById("canvas")
@@ -272,26 +298,27 @@ function renderSTL() {
 		sampleRatio = 1;
 		renderer.setSize(canvasSize * sampleRatio, canvasSize * sampleRatio * 0.6666);
 		console.log(canvasSize);
-
 		}
 	}
+
 	function animate() {
 		requestAnimationFrame( animate );
 		render();
 	}
+
 	function render() {
 		if (mesh) {
 			mesh.rotation.z += 0.02;
 		}
-		//light1.position.z -= 1;
 		renderer.render( scene, camera );
 	}
 }
+
 function ab2str(buf) {
 	  return String.fromCharCode.apply(null, new Uint8Array(buf));
 }
+
 $("#3Dview").on('shown.bs.modal', function () {
-	var cv;
 	renderSTL();
 	})
 

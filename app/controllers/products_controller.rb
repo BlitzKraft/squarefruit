@@ -48,7 +48,9 @@ class ProductsController < ApplicationController
 	end
 
 	def show
-		@product = Product.find(params[:id]) or not_found
+		@product = current_user.products.find(params[:id]) or not_found
+		@product.price = params[:price]
+		@product.save
 	end
 
 	def not_found
@@ -71,5 +73,12 @@ class ProductsController < ApplicationController
 	private 
 	def product_params
 		params.require(:product).permit(:id, :title, :body, :threeD_model)
+	end
+
+	def user_is_current_user
+		unless current_user.id == Product.find(params[:id]).user_id
+			flash[:notice] = "You are not authorized."
+			redirect_to root_path
+		end
 	end
 end

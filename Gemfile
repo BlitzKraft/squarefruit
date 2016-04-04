@@ -27,17 +27,25 @@ gem 'devise'
 # Uploaded files
 gem 'paperclip', '~> 4.3.1', github:'thoughtbot/paperclip'
 
-# TODO remove refile. 
-# Somewhere there is a reference to it that breaks the server.
-gem 'refile', require: 'refile/rails'
 gem 'aws-sdk', '~> 2.2.27'
 gem 'mini_magick', '~> 4.4'
 gem 'stripe', '~> 1.36'
-gem 'will_paginate'
-
+gem 'will_paginate', '~> 3.1'
+gem 'will_paginate-bootstrap', '~> 1.0', '>= 1.0.1'
 
 # Helps with forms
 gem 'simple_form', '~> 3.0.2'
+
+# TODO implement all this shit
+# omni auth
+gem 'omniauth'
+gem 'omniauth-github', github: 'intridea/omniauth-github'
+gem 'omniauth-openid', github: 'intridea/omniauth-openid'
+gem 'omniauth-facebook'
+gem 'omniauth-google'
+gem 'omniauth-shapeways'
+
+
 
 # mime type detection
 gem 'mimemagic'

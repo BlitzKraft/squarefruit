@@ -23,7 +23,6 @@
 					<tr style="background-color: ">
 						<td><%= prod.id %></td>
 						<td><%= User.find(prod.user_id).email %></td>
-						<!-- %= #TODO limit requests to reduce server load % -->
 						<td><%= link_to prod.threeD_model_file_name, product_path(prod) %></td>
 						<td>
 							<%= form_for prod do |f| %>
@@ -55,20 +54,17 @@
 					</tr>
 				</thead>
 				<tbody>
-			<% @products.each do |prod| %>
-					<tr style="background-color: ">
-						<td><%= prod.id %></td>
-						<td><%= User.find(prod.user_id).email %></td>
-						<!-- %= #TODO limit requests to reduce server load % -->
-						<td><%= link_to prod.threeD_model_file_name, product_path(prod) %></td>
-						<td>Test
-						</td>
-						<td><%= prod.price %></td>
-					</tr>
-			<% end %>
+					<% @products.each do |prod| %>
+						<tr style="background-color: ">
+							<td><%= link_to prod.threeD_model_file_name, product_path(prod) %></td>
+							<td><%= prod.status %>
+							</td>
+							<td><%= prod.price %></td>
+						</tr>
+					<% end %>
 				</tbody>
 			</table>
 		<% end %>
-			<%= will_paginate @products %>
+		<%= will_paginate @products, renderer: BootstrapPagination::Rails %>
 	<% end %>
 </div>

@@ -1,9 +1,5 @@
 class ProductsController < ApplicationController
 	before_filter :require_permission, only: :edit
-	# TODO  implement user check. Users shouldn't see others' models
-	# The function is written but gets feminazi 
-	# (TRIGGERED for no reason)
-	# before_filter :user_is_current_user
 	def index
 		#@products = Product.all.order('created_at DESC')
 		if current_user.try(:admin?)
@@ -52,7 +48,7 @@ class ProductsController < ApplicationController
 	end
 
 	def show
-		@product = Product.find(params[:id]) or not_found
+		@product = current_user.products.find(params[:id]) or not_found
 		@product.price = params[:price]
 		@product.save
 	end

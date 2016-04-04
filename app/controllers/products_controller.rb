@@ -52,7 +52,7 @@ class ProductsController < ApplicationController
 	end
 
 	def show
-		@product = Product.find(params[:id]) or not_found
+		@product = current_user.products.find(params[:id]) or not_found
 		@product.price = params[:price]
 		@product.save
 	end

@@ -62,11 +62,11 @@
 </div>
 <script type="text/javascript">
 
+var stl_loaded = false;
 function renderSTL() {
 	var camera, scene, renderer,
-	geometry, material, mesh, light1, stats;
+	    geometry, material, mesh, light1, stats;
 	var stl_bin = <%= @product.stl_binary %>
-	console.log("<%= @product.stl_binary %>")
 
 	function trim (str) {
 		str = str.replace(/^\s+/, '');
@@ -280,13 +280,16 @@ function renderSTL() {
 		xhr.onerror = function(e) {
 			console.log(e);
 		}
-		xhr.open( "GET", '<%= @product.threeD_model.url %>', true );
+		if(!stl_loaded) {
+			xhr.open( "GET", '<%= @product.threeD_model.url %>', true );
+			stl_loaded = true;
+			xhr.send( null );
+		}
 		if (stl_bin) {
 			xhr.responseType = "arraybuffer";
 		} else {
-			xhr.responseType = 'text';
+			xhr.responseType = "text";
 		}
-		xhr.send( null );
 		renderer = new THREE.WebGLRenderer(); //new THREE.CanvasRenderer();
 		if (typeof cv === 'undefined') {
 		cv = document.getElementById("canvas")
@@ -296,7 +299,6 @@ function renderSTL() {
 		sampleRatio = 1;
 		renderer.setSize(canvasSize * sampleRatio, canvasSize * sampleRatio * 0.6666);
 		console.log(canvasSize);
-
 		}
 	}
 
@@ -309,7 +311,6 @@ function renderSTL() {
 		if (mesh) {
 			mesh.rotation.z += 0.02;
 		}
-		//light1.position.z -= 1;
 		renderer.render( scene, camera );
 	}
 }
@@ -319,7 +320,6 @@ function ab2str(buf) {
 }
 
 $("#3Dview").on('shown.bs.modal', function () {
-	var cv;
 	renderSTL();
 	})
 

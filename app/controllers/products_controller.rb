@@ -1,16 +1,11 @@
 class ProductsController < ApplicationController
 	before_filter :require_permission, only: :edit
-	# TODO  implement user check. Users shouldn't see others' models
-	# The function is written but gets feminazi 
-	# (TRIGGERED for no reason)
-	# before_filter :user_is_current_user
+	# todo Handle error gracefully. Now it's an error.
+	# try and figure out raising 404
 	def index
-		#@products = Product.all.order('created_at DESC')
 		if current_user.try(:admin?)
-			#@products = Product.all.order('created_at DESC')
 			@products = Product.all.paginate(:page => params[:page], :per_page => 20).order('created_at DESC')
 		elsif !current_user.nil?
-			#@products = current_user.products.all.order('created_at DESC')
 			@products = current_user.products.all.paginate(:page => params[:page], :per_page => 20).order('created_at DESC')
 		end
 	end
@@ -52,7 +47,7 @@ class ProductsController < ApplicationController
 	end
 
 	def show
-		@product = current_user.products.find(params[:id]) or not_found
+		@product = current_user.products.find(params[:id]) 
 		@product.price = params[:price]
 		@product.save
 	end

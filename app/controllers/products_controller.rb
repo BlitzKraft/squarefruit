@@ -47,9 +47,11 @@ class ProductsController < ApplicationController
 	end
 
 	def show
-		@product = current_user.products.find(params[:id]) 
-		@product.price = params[:price]
-		@product.save
+		if !current_user.nil?
+			@product = current_user.products.find(params[:id]) 
+		elsif 
+			redirect_to not_found
+		end
 	end
 
 	def not_found

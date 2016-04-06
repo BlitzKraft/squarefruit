@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_many :products
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-  	 :omniauthable, :omniauth_providers => [ :github ]
+  	 :omniauthable, :omniauth_providers => [ :github, :shapeways, :google_oauth2 ]
   def self.from_omniauth(auth)
 	  where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
 		  user.provider = auth.provider

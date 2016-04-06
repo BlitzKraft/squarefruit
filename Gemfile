@@ -42,7 +42,7 @@ gem 'omniauth'
 gem 'omniauth-github', github: 'intridea/omniauth-github'
 gem 'omniauth-openid', github: 'intridea/omniauth-openid'
 gem 'omniauth-facebook'
-gem 'omniauth-google'
+gem 'omniauth-google-oauth2'
 gem 'omniauth-shapeways'
 
 

@@ -240,6 +240,8 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   config.omniauth :github, '396a966ceef6d3270a06', '00df7ef96239f2e2a4700b8034412ba87cb59e6e', scope: 'user'
+  config.omniauth :shapeways, '9affc4d8bab501e4f56f01176f66d28c977c6623', 'bfdcf70f393a5261692777e06bfb8b7a63f145f1'
+  config.omniauth :google_oauth2, '460993925975-lops3mod9jefvnq7j0dlinp7a8st0rmi.apps.googleusercontent.com', 'DnOp1iynOhj5VAEs0Q-UwrxO', scope: 'userinfo.email', skip_jwt: true
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

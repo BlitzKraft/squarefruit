@@ -295,7 +295,6 @@ function renderSTL() {
 		cv = document.getElementById("canvas")
 		cv.appendChild(renderer.domElement );
 		canvasSize = Math.max(cv.parentElement.clientWidth, cv.parentElement.clientHeight, 300);
-		//TODO anti aliasing via supersampling
 		sampleRatio = 1;
 		renderer.setSize(canvasSize * sampleRatio, canvasSize * sampleRatio * 0.6666);
 		console.log(canvasSize);

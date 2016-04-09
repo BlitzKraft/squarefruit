@@ -10,6 +10,8 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require bootstrap-social
+ *= require font-awesome
  *= require_tree .
  *= require_self
  */
@@ -20,6 +22,9 @@
 @import "bootstrap";
 @import "_variables.scss";
 @import "bootswatch/cyborg/bootswatch";
+@import "bootstrap-social";
+@import "font-awesome";
+
 
 .btn-file {
 	position: relative;

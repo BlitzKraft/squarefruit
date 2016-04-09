@@ -1,7 +1,5 @@
 class ProductsController < ApplicationController
 	before_filter :require_permission, only: :edit
-	# todo Handle error gracefully. Now it's an error.
-	# try and figure out raising 404
 	def index
 		if current_user.try(:admin?)
 			@products = Product.all.paginate(:page => params[:page], :per_page => 20).order('created_at DESC')

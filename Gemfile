@@ -14,9 +14,12 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Makes shit look pretty
-gem 'bootstrap-sass', '~> 3.2.0'
-gem 'bootswatch-rails'
 gem 'autoprefixer-rails'
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'bootstrap-social-rails'
+gem 'bootswatch-rails'
+gem 'font-awesome-rails'
+
 
 gem 'coffee-script'
 #gem 'ruby-filemagic'
@@ -36,14 +39,14 @@ gem 'will_paginate-bootstrap', '~> 1.0', '>= 1.0.1'
 # Helps with forms
 gem 'simple_form', '~> 3.0.2'
 
-# TODO implement all this shit
 # omni auth
 gem 'omniauth'
 gem 'omniauth-github', github: 'intridea/omniauth-github'
-gem 'omniauth-openid', github: 'intridea/omniauth-openid'
+#gem 'omniauth-openid', github: 'intridea/omniauth-openid'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
-gem 'omniauth-shapeways'
+#gem 'omniauth-shapeways'
+gem 'omniauth-bitbucket'
 
 
 

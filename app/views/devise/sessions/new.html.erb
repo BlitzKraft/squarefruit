@@ -21,11 +21,14 @@
 				</div>
 				<% end %>
 
-<%- if devise_mapping.omniauthable? %>
-  <%- resource_class.omniauth_providers.each do |provider| %>
-    <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %><br />
-  <% end -%>
-<% end -%>
+				<%- if devise_mapping.omniauthable? %>
+					<h6>Or login using:</h6>
+					  <%= link_to "<span class=\"fa fa-facebook\"></span>".html_safe, omniauth_authorize_path(resource_name, :facebook), :class => "btn btn-social-icon btn-facebook" %>
+					  <%= link_to "<span class=\"fa fa-google\"></span>".html_safe, omniauth_authorize_path(resource_name, :google_oauth2), :class => "btn btn-social-icon btn-google" %>
+					  <%= link_to "<span class=\"fa fa-github\"></span>".html_safe, omniauth_authorize_path(resource_name, :github), :class => "btn btn-social-icon btn-github" %>
+					  <%= link_to "<span class=\"fa fa-bitbucket\"></span>".html_safe, omniauth_authorize_path(resource_name, :bitbucket), :class => "btn btn-social-icon btn-github" %>
+				<% end -%>
+
 				<div class="actions"><br />
 				<%= f.submit "Log in", :class => "btn btn-primary" %>
 				</div>

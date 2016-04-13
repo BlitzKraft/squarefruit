@@ -1,0 +1,68 @@
+# Add configuration values here, as shown below.
+#
+# pusher_app_id: "2954"
+# pusher_key: 7381a978f7dd7f9a1117
+# pusher_secret: abdc3b896a0ffb85d373
+# stripe_api_key: sk_test_2J0l093xOyW72XUYJHE4Dv2r
+# stripe_publishable_key: pk_test_ro9jV5SNwGb1yYlQfzG17LHK
+#
+# production:
+#   stripe_api_key: sk_live_EeHnL644i6zo4Iyq4v1KdV9H
+#   stripe_publishable_key: pk_live_9lcthxpSIHbGwmdO941O1XVU
+
+
+# List of keys needed:
+# Facebook
+#  * Test
+#  * Production
+#
+# Google
+# * Test
+# * Production
+#
+# Amazon S3
+# * Test
+# * Production
+#
+# Github
+# * Test
+# * Production
+#
+# Bitbucket
+# * Test
+# * Production
+#
+# Stripe
+# * Test
+# * Production
+
+fb_app_id: "536377926547477"
+fb_secret: "c5c73d16c624c309d1ddb2734bde81f4"
+
+bitbucket_app_id: "wmyhF7CnjncpFfhFSZ"
+bitbucket_secret: "aWWSLTWcWLXBjr4bvWgsRG3unNHAReNX"
+
+github_app_id: "396a966ceef6d3270a06"
+github_secret: "00df7ef96239f2e2a4700b8034412ba87cb59e6e"
+
+
+google_app_id: "460993925975-lops3mod9jefvnq7j0dlinp7a8st0rmi.apps.googleusercontent.com"
+google_secret: "DnOp1iynOhj5VAEs0Q-UwrxO"
+
+stripe_key: "sk_test_DQ0J9xxr2hKTAvVyvdDmr1Ds"
+
+production:
+        fb_app_id: "536377926547477"
+        fb_secret: "c5c73d16c624c309d1ddb2734bde81f4"
+
+        bitbucket_app_id: "wmyhF7CnjncpFfhFSZ"
+        bitbucket_secret: "aWWSLTWcWLXBjr4bvWgsRG3unNHAReNX"
+
+        github_app_id: "396a966ceef6d3270a06"
+        github_secret: "00df7ef96239f2e2a4700b8034412ba87cb59e6e"
+
+
+        google_app_id: "460993925975-lops3mod9jefvnq7j0dlinp7a8st0rmi.apps.googleusercontent.com"
+        google_secret: "DnOp1iynOhj5VAEs0Q-UwrxO"
+
+

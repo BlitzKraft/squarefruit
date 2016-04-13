@@ -1,9 +1,7 @@
 <div class="panel panel-default">
-	<div class="panel-heading">Pay and confirm your order</div>
+	<div class="panel-heading">To start 3D printing, enter your payment info below</div>
 	<div class="panel-body">
-		Part name: <%= @product.threeD_model_file_name %>
 		<br>
-		Part price: $<%= @product.price %>
 		<form action="" method="POST" id="payment-form" class="form-inline"> 
 			<span class="payment-errors"></span>
 				<div class="form-row">
@@ -26,7 +24,7 @@
 				</div>
 			</div>
 			<br>
-			<button type="submit" class="btn btn-primary">Submit Payment</button>
+			<button type="submit" class="btn btn-primary">Save card details</button>
 		</form>
 	</div>
 </div>

@@ -1,6 +1,6 @@
 class ChargesController < ApplicationController
 	protect_from_forgery with: :null_session
-	Stripe.api_key = "sk_test_DQ0J9xxr2hKTAvVyvdDmr1Ds"
+	Stripe.api_key = ENV['stripe_key']
 	def new
 		@product = Product.find(params[:prod_id])
 	end
@@ -13,10 +13,12 @@ class ChargesController < ApplicationController
 		#	:email => params[:stripeEmail],
 		#	:source => params[:stripeToken]
 		#)
+
 		customer = Stripe::Customer.create(
 			:source => params[:stripeToken]
 		)
 		charge = Stripe::Charge.create(
+			#:customer => current_user.stripe_cus_id,
 			:customer => customer.id,
 			:amount => @amount,
 			:description => @product.threeD_model_file_name,
@@ -28,6 +30,16 @@ class ChargesController < ApplicationController
 		redirect_to new_charge_path(:prod_id => @product.id)
 	end
 
-	def show
+	#def show
+	#end
+
+	def save_card
+		render '/charges/save_card.html'
+		customer = Stripe::Customer.create(
+			card: token,
+			description: 'paying user',
+			email: @user.email
+		)
+		save_stripe_customer_id(stripe_cus_id, customer.id)
 	end
 end

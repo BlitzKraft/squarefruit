@@ -33,5 +33,15 @@ module Paperclip
 			false
 		end
 	end
+	def clear
+		queue_existing_for_delete
+		@errors = {}
+	end
+	def destroy
+		clear
+		save
+	end
 end
+
+
 

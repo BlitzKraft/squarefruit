@@ -1,6 +1,6 @@
 class Product < ActiveRecord::Base
 	belongs_to :user
-	has_attached_file :threeD_model,
+	has_attached_file :threeD_model, dependent: :destroy,
 		:storage => :s3,
 		:s3_credentials => Proc.new { |a| a.instance.s3_credentials }
 	validates_attachment :threeD_model, presence: true, content_type: { content_type: ["text/plain", "application/octet-stream", "application/sla"] }

@@ -42,13 +42,12 @@ gem 'simple_form', '~> 3.0.2'
 # omni auth
 gem 'omniauth'
 gem 'omniauth-github', github: 'intridea/omniauth-github'
-#gem 'omniauth-openid', github: 'intridea/omniauth-openid'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
-#gem 'omniauth-shapeways'
 gem 'omniauth-bitbucket'
 
-
+# for env vars
+gem 'figaro'
 
 # mime type detection
 gem 'mimemagic'

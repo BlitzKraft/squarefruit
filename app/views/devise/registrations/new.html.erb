@@ -22,8 +22,10 @@
 				<div class="field">
 				<%= f.label :password_confirmation %>
 				<%= f.password_field :password_confirmation, :class => "form-control", :id => "inputPassword", autocomplete: "off" %><br>
-				</div><br>
-
+				</div>
+				<div class="field">
+					<%= render "devise/shared/social" %><br />
+				</div>
 				<div class="actions">
 				<%= f.submit "Sign up", :class => "btn btn-primary" %>
 				</div>

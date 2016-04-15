@@ -79,9 +79,9 @@ Rails.application.configure do
   config.paperclip_defaults = {
 	  :storage => :s3,
 	  :s3_credentials => {
-		  :bucket => 'squarefruit-bucket',
-		  :access_key_id => 'AKIAI3FB4DWKFXN5XJTA',
-		  :secret_access_key => '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'
+		  :bucket => 'squarefruit-prod',
+		  :access_key_id => ENV['amazon_s3_access_key'],
+		  :secret_access_key => ENV['amazon_s3_secret_key']
 	  }
   }
 end

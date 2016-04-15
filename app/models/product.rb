@@ -11,6 +11,7 @@ class Product < ActiveRecord::Base
 	enum status: { uploaded: 0, reviewed: 1, optimized: 2, approved: 3, paid: 4, printing: 5, printed: 6, shipped: 7 }
 
 	def s3_credentials 
-		{ :s3_region=> "us-west-2", :bucket => "squarefruit-bucket", :access_key_id => "AKIAI3FB4DWKFXN5XJTA", :secret_access_key => "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", :s3_host_name => "s3-us-west-2.amazonaws.com" }
+#		{ :s3_region=> "us-west-2", :bucket => "squarefruit-bucket", :access_key_id => "AKIAI3FB4DWKFXN5XJTA", :secret_access_key => "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", :s3_host_name => "s3-us-west-2.amazonaws.com" }
+		{ :s3_region=>ENV['amazon_s3_region'] , :bucket =>ENV['amazon_s3_bucket'] , :access_key_id =>ENV['amazon_s3_access_key'] , :secret_access_key =>ENV['amazon_s3_secret_key'] , :s3_host_name => "s3-us-west-2.amazonaws.com"}
 	end
 end

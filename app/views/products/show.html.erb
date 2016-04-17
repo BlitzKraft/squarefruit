@@ -108,7 +108,7 @@ function renderSTL() {
 			geo,
 			new THREE.MeshLambertMaterial({
 				overdraw:true,
-				color: 0x00aa00,
+				color: 0x00B0F0,
 				shading: THREE.FlatShading
 			}
 		));
@@ -198,7 +198,7 @@ function renderSTL() {
 							geo, 
 							new THREE.MeshLambertMaterial({
 								overdraw:true,
-								color: 0xaa0000,
+								color: 0x00B0F0,
 								shading: THREE.FlatShading
 							}
 						));
@@ -266,9 +266,6 @@ function renderSTL() {
 					mesh.rotation.z = .25;
 					var bbox = new THREE.BoundingBoxHelper( mesh );
 					bbox.update();
-					//scene.add(bbox);
-					var grid = new THREE.GridHelper(10, 1);
-					scene.add(grid);
 					var point = new THREE.Vector3((bbox.box.max.x + bbox.box.min.x)/2, (bbox.box.max.y + bbox.box.min.y)/2, (bbox.box.max.z + bbox.box.min.z)/2 );
 					camera.position.z = bbox.box.max.z * 2 ;
 					camera.far = Math.max(bbox.box.max.x, bbox.box.max.y, bbox.box.max.z) * 2

@@ -38,7 +38,7 @@ google_secret: "DnOp1iynOhj5VAEs0Q-UwrxO"
 amazon_s3_access_key: "AKIAI3FB4DWKFXN5XJTA"
 amazon_s3_secret_key: "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"
 amazon_s3_region: "us-west-2"
-amazon_s3_bucket: "squarefruit-bucket.s3-website-us-west-2.amazonaws.com"
+amazon_s3_bucket: "squarefruit-bucket"
 
 stripe_key: "sk_test_DQ0J9xxr2hKTAvVyvdDmr1Ds"
 

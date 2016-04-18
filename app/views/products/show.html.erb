@@ -53,9 +53,10 @@
 	<div class="modal fade" id="3Dview">
 		<div id="modal_3D" class="modal-dialog modal-lg">
 			<div class="modal-content" id="test">
-				<div class="modal-header"><%= @product.title %></div>
+				<div class="modal-header"><%= @product.title %>
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button></div>
 				<div class="modal-body" id="canvas" style="display: block;padding: 0;"> </div>
-				<div class="modal-footer">Click outside this window to close</div>
+				<div class="modal-footer"></div>
 			</div>
 		</div>
 	</div>

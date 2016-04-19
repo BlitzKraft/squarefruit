@@ -35,7 +35,6 @@ class ProductsController < ApplicationController
 		isBinaryString = Paperclip.io_adapters.for(@product.threeD_model).read(80)
 		@product.stl_binary = !(isBinaryString.include? "solid")
 		respond_to do |format| 
-		#logger.debug "This is in the table #{@product.id} : #{@product.stl_binary}"
 			if @product.save
 				format.html { redirect_to @product, notice: 'Listing successfully created.' }
 				format.json { render :show, status: :created, location: @product }

@@ -8,22 +8,39 @@
 	<% if user_signed_in? %>
 		<h4>Status</h4>
 		<div class="progress" style="display: block;">
-			<% #Upload %>
-			<div class="progress-bar progress-bar-primary" style="width: 12.5%;"></div>
-			<% #Review %>
-			<div class="progress-bar progress-bar-warning" style="width: 12.5%;"></div>
-			<% #Optimize %>
-			<div class="progress-bar progress-bar-info" style="width: 12.5%;"></div>
-			<% #Approve %>
-			<div class="progress-bar progress-bar-success" style="width: 12.5%;"></div>
-			<% #Payment %>
-			<div class="progress-bar progress-bar-danger" style="width: 12.5%;"></div>
-			<% #Printing %>
-			<div class="progress-bar progress-bar-danger progress-bar-striped active" style="width: 12.5%;"></div>
-			<% #Printed %>
-			<div class="progress-bar progress-bar-info" style="width: 12.5%;"></div>
-			<% #Shipped %>
-			<div class="progress-bar progress-bar-success" style="width: 12.5%;"></div>
+			<% if @product[:status] >= 0 %>
+				<% #Upload %>
+				<div class="progress-bar progress-bar-primary" style="width: 12.5%;"></div>
+			<% end %>
+			<% if @product[:status] >= 1 %>
+				<% #Review %>
+				<div class="progress-bar progress-bar-primary" style="width: 12.5%;"></div>
+			<% end %>
+			<% if @product[:status] >= 2 %>
+				<% #Optimize %>
+				<div class="progress-bar progress-bar-primary" style="width: 12.5%;"></div>
+			<% end %>
+			<% if @product[:status] >= 3 %>
+				<% #Approve %>
+				<div class="progress-bar progress-bar-primary" style="width: 12.5%;"></div>
+			<% end %>
+			<% if @product[:status] >= 4 %>
+				<% #Payment %>
+				<div class="progress-bar progress-bar-primary" style="width: 12.5%;"></div>
+			<% end %>
+			<% if @product[:status] >= 5 %>
+				<% #Printing %>
+				<div class="progress-bar progress-bar-primary" style="width: 12.5%;"></div>
+			<% end %>
+			<% if @product[:status] >= 6 %>
+				<% #Printed %>
+				<div class="progress-bar progress-bar-primary" style="width: 12.5%;"></div>
+			<% end %>
+			<% if @product[:status] >= 7 %>
+				<% #Shipped %>
+				<div class="progress-bar progress-bar-primary" style="width: 12.5%;"></div>
+			<% end %>
+			<%= @product.status %>
 		</div>
 		<div class="btn-group">
 			<% if !@product.price.nil? %>

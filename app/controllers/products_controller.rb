@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
 	# try and figure out raising 404
 	def index
 		if current_user.try(:admin?)
-			@products = Product.all.paginate(:page => params[:page], :per_page => 20).order('created_at DESC')
+			@products = Product.where(:archived => false).paginate(:page => params[:page], :per_page => 20).order('created_at DESC')
 		elsif !current_user.nil?
 			@products = current_user.products.all.paginate(:page => params[:page], :per_page => 20).order('created_at DESC')
 		end
@@ -24,6 +24,10 @@ class ProductsController < ApplicationController
 		@product.stl_binary = !(isBinaryString.include? "solid")
 		if @product.update(product_params)
 			if current_user.admin
+				if @product[:status] = 7
+					@product.archived = true
+					@product.save
+				end
 				redirect_to root_path
 			else
 				redirect_to @product
@@ -51,7 +55,12 @@ class ProductsController < ApplicationController
 
 	def show
 		if current_user.admin
-			@product = Product.find(params[:id])
+			if (params[:id] == 'archive')
+				@products = Product.where(:archived => true).paginate(:page => params[:page], :per_page => 20).order('created_at DESC')
+			render 'index'
+			else 
+				@product = Product.find(params[:id])
+			end
 		elsif !current_user.nil?
 			@product = current_user.products.find(params[:id]) 
 		else

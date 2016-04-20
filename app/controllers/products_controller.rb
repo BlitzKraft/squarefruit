@@ -24,7 +24,7 @@ class ProductsController < ApplicationController
 		@product.stl_binary = !(isBinaryString.include? "solid")
 		if @product.update(product_params)
 			if current_user.admin
-				if @product[:status] = 7
+				if @product[:status] == 7
 					@product.archived = true
 					@product.save
 				end

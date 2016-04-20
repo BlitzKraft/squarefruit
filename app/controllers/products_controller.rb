@@ -23,7 +23,11 @@ class ProductsController < ApplicationController
 		isBinaryString = Paperclip.io_adapters.for(@product.threeD_model).read(80)
 		@product.stl_binary = !(isBinaryString.include? "solid")
 		if @product.update(product_params)
-			redirect_to @product
+			if current_user.admin
+				redirect_to root_path
+			else
+				redirect_to @product
+			end
 		else
 			render 'edit'
 		end
@@ -46,9 +50,11 @@ class ProductsController < ApplicationController
 	end
 
 	def show
-		if !current_user.nil?
+		if current_user.admin
+			@product = Product.find(params[:id])
+		elsif !current_user.nil?
 			@product = current_user.products.find(params[:id]) 
-		elsif 
+		else
 			redirect_to not_found
 		end
 	end
@@ -65,14 +71,18 @@ class ProductsController < ApplicationController
 
 	def require_permission
 		@product = Product.find(params[:id])
-		if current_user != Product.find(params[:id]).user
+		if current_user != Product.find(params[:id]).user or current_user.admin
 			redirect_to @product
 		end
 	end
 
 	private 
 	def product_params
-		params.require(:product).permit(:id, :title, :body, :threeD_model)
+		if current_user.admin
+			params.require(:product).permit(:id, :title, :body, :threeD_model, :status, :price)
+		else
+			params.require(:product).permit(:id, :title, :body, :threeD_model)
+		end
 	end
 
 	def user_is_current_user

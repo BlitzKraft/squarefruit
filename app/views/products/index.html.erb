@@ -27,21 +27,20 @@
 						<td><%= prod.id %></td>
 						<td><%= User.find(prod.user_id).email %></td>
 						<td><%= link_to prod.threeD_model_file_name, product_path(prod) %></td>
+						<%= form_for(prod, remote: true, :authenticity_token => true) do |form| %>
 						<td>
-							<%= form_for prod do |f| %>
-							<select class="form-control" id="select">
-								<option>Uploaded</option>
-								<option>Review</option>
-								<option>Optimize</option>
-								<option>Approve</option>
-								<option>Paid</option>
-								<option>Printing</option>
-								<option>Printed</option>
-								<option>Shipped</option>
-							</select>
+							<%= form.select(:status, options_for_select([["Uploaded","Uploaded"], ["Review","Reviewed"], ["Optimized","Optimized"], ["Approved","Approved"], ["Paid","Paid"], ["Printing","Printing"], ["Printed","Printed"], ["Shipped","Shipped"]], :selected => prod.status, :include_blank => false, :html => { :class => "form-control"} ), {}, { :class => "form-control", :onchange => "this.form.submit()" }) %>
+						</td>
+						<td>
+							<% if prod[:status] > 2 and prod.price.nil? %>
+								<%= form.number_field :price, :placeholder => "$", :class => "form-control" %>
+							<% elsif prod.price.nil? %>
+								Not set
+							<% else %>
+								<%= prod.price %>
 							<% end %>
 						</td>
-						<td><%= prod.price %></td>
+						<% end %>
 					</tr>
 				<% end %>
 				</tbody>

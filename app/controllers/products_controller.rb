@@ -24,14 +24,14 @@ class ProductsController < ApplicationController
 		@product.stl_binary = !(isBinaryString.include? "solid")
 		if @product.update(product_params)
 			if current_user.admin
-				unless @product.price.nil? and @product[:status] < 3
+				if not @product.price.nil? and @product[:status] < 3
 					@product[:status] = 3
-					@product.save
-				end
-				if @product[:status] == 7
+				elsif @product.price.nil? and @product[:status] > 3
+					@product[:status] = 3
+				elsif @product[:status] == 7
 					@product.archived = true
-					@product.save
 				end
+					@product.save
 				redirect_to root_path
 			else
 				redirect_to @product
